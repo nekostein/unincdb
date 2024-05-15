@@ -56,6 +56,7 @@ case $1 in
             exec ./deploy.sh
         else
             echo "[ERROR] Script file 'deploy.sh' is not found."
+            wrangler pages deploy _dist/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
         fi
         ;;
 esac
