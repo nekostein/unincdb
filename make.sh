@@ -31,6 +31,12 @@ case $1 in
         hash_compare "$dir"
         try_make "$dir/Witness-$OFFICE.tex" # Create PDF letter
         try_make "$dir/Witness-$OFFICE.pdf" # Put PDF to _dist
+        for suffix in aux log out; do
+            find "$dir" -name 'Witness-*'."$suffix" -delete
+        done
+        for namespec in 'texput.log' '*.texpart' '*.pdf'; do
+            find "$dir" -name "$namespec" -delete
+        done
         ;;
     */Charter.md)
         sha1sum "$1" | cut -d' ' -f1 > "$1.hash"

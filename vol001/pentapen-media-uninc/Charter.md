@@ -1,3 +1,5 @@
+THIS CHARTER IS EXAMPLE DATA. FOR DEMO PURPOSE ONLY.
+
 Last revision: 2025-01-01
 
 # Preamble
@@ -13,11 +15,12 @@ Last revision: 2025-01-01
    1. JINYU MENT (a.k.a. MEGABITS) (President)
    2. NERUTHES (Secretary)
    3. LINCOLN GUANG
-2. When any officer resigns or dies, its commissioner status is removed, and the committee shall elect a new officer.
+2. When any officer resigns or dies, the committee shall elect a new officer.
+3. When any commissioner is dead, it is removed from the committee.
 
 # Decisions
 
-1. The committee makes decisions like how a Board of Directors would do in most companies.
+1. The committee makes decisions like how a Board of Directors would do in most companies. A simple majority (at least 50.0% vote) is needed to approve a motion.
 2. The President has 100 votes. Each of other members has 1 vote.
 
 # Assets
@@ -27,7 +30,4 @@ Last revision: 2025-01-01
 3. We are a non-commercial organization so we will never pay dividends.
 4. We voluntarily subscribe to the regulations on how 501(c)(3) charitable organizations should operate.
 
-# Appenfix: Letters of Notary Witness
 
-- We have requested letters of notary witness from the following agencies.
-- https://unincdb.nekostein.com/vol001/pentapen-media-uninc.pdf

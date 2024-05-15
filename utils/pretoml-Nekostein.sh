@@ -9,8 +9,9 @@ outfn="$1.Nekostein.1.texpart"
 echo '' > "$outfn"
 
 
-printf -- "https://unincdb.nekostein.com/%s.pdf" "$workdir" | tr -d '\n' > "$1.Nekostein.2.texpart"
-
+printf -- '\href{https://unincdb.nekostein.com/%s.pdf}{https://unincdb.nekostein.com/%s.pdf}' \
+    "$workdir" "$workdir" | tr -d '\n' \
+    > "$1.Nekostein.2.texpart"
 
 function printfield() {
     keyname="$1"
@@ -26,7 +27,7 @@ function printfield() {
 
 
 (
-    printfield 'Name' fullname manifestfieldbig
+    printfield 'Business Name' fullname manifestfieldbig
     printfield 'Type' type
     printfield 'Date of Creation' date_creation
     printfield 'Status' status
@@ -37,19 +38,20 @@ function printfield() {
 ) >> "$outfn"
 
 
-# Iterate over all addresses
-# address_arr=""
-# for itr in {0..10}; do
-#     value="$(tomlq -r .addresses["$itr"] "$tomlpath")"
-#     if [[ "$value" != 'null' ]]; then
-#         address_arr="$address_arr $value"' \\ '
-#     fi
-# done
-addresses_lines="$()"
 
-function process_addr() {
-    # sed ':a;N;$ba;s/\n/\\n/g' /dev/stdin | sed 's/\\$//'
-    echo -n $(cat /dev/stdin) | tr ' ' '|' | sed 's/|/\\\\/g'
+function process_multiline_text() {
+    echo -n "$(cat /dev/stdin)" | tr '\n' '|' | sed 's/|/\\par /g'
 }
 
-echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | process_addr)"'}' >> "$outfn"
+
+function makehreflinks() {
+    while read -r line; do
+        echo '\href{'"$line"'}''{'"$line"'}'
+    done < /dev/stdin
+}
+
+
+
+echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
+echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
+echo '\manifestfield{Notary Witness}{\small '"$(tomlq -r .notary[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
