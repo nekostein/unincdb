@@ -1,0 +1,11 @@
+*.pdf
+*.log
+*.aux
+*.out
+*.texpart
+
+_dist
+
+.myenv
+deploy.sh
+vol*/*/Witness-*.tex

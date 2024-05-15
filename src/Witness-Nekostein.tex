@@ -1,0 +1,69 @@
+\documentclass[10pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=38em]{geometry}
+\usepackage{calc,fontspec,datetime2,hyperref}
+\setsansfont{TeX Gyre Heros}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\linespread{1.1}
+
+% Pandoc compatibility layer
+\providecommand{\tightlist}[0]{%
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+}
+% \providecommand{\url}[1]{#1}
+
+
+
+
+
+\newcommand{\cachedunincname}[0]{}
+\newcommand{\manifestfieldbig}[2]{
+    \vskip 1em
+    Name\par
+    \textbf{\large\strut\sffamily#2}
+    \vskip 1em
+    \renewcommand{\cachedunincname}{#2}
+}
+\newcommand{\manifestfield}[2]{
+    \parbox[t]{9em}{\strut#1}\hfill%
+    \parbox[t]{\linewidth-11em}{\bfseries\strut#2}\par\vskip 4pt
+}
+
+
+
+
+
+\begin{document}
+\begin{center}
+	\Large\strut
+	LETTER OF NOTARY WITNESS FOR\\UNINCORPORATED ORGANIZATION
+\end{center}
+\vskip 1em
+
+The issuing agency hereby certifies that the following chartered unincorporated organization has been filed.
+
+\input{./UNINC.toml.Nekostein.1.texpart}
+% \vskip 1em
+\manifestfield{Date of Issue}{\today}
+
+
+\sffamily
+\vfill
+\strut Issued by NEKOSTEIN\par
+\strut Lookup the UNINC Database at:\par
+\strut \input{./UNINC.toml.Nekostein.2.texpart}
+
+\thispagestyle{empty}
+\clearpage
+\rmfamily
+
+
+
+\begin{center}
+	\Large\strut
+	ORGANIZATION CHARTER
+\end{center}
+
+\input{./Charter.md.texpart}
+\end{document}

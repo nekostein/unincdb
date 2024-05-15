@@ -1,0 +1,12 @@
+fullname = "PENTAPEN MEDIA UNINC"
+type = "Committee"
+date_creation = "2024-12-31"
+status = "Dormant"
+fields = "Online Media"
+president = "JINYU MENG (a.k.a. MEGABITS)"
+secretary = "NERUTHES"
+charter_hash = "c934f63d6c8ac52ff73da063244fe0b8a20ee7bb"
+addresses = [
+    "https://github.com/pentapen",
+    "https://pentapen.com"
+]
