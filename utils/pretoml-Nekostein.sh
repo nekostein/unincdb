@@ -8,9 +8,9 @@ workdir="$(dirname "$tomlpath")"
 outfn="$1.Nekostein.1.texpart"
 echo '' > "$outfn"
 
-
+workdir_alt="$(cut -d/ -f2- <<< "$workdir")"
 printf -- '\href{https://unincdb.nekostein.com/%s.pdf}{https://unincdb.nekostein.com/%s.pdf}' \
-    "$workdir" "$workdir" | tr -d '\n' \
+    "$workdir_alt" "$workdir_alt" | tr -d '\n' \
     > "$1.Nekostein.2.texpart"
 
 function printfield() {
@@ -34,7 +34,7 @@ function printfield() {
     printfield 'President' president
     printfield 'Secretary' secretary
     echo '\manifestfield{Charter Hash}{'"$(cat "$workdir/Charter.md.hash")"'}'
-    printfield 'Fields' fields
+    printfield 'Fields of Conduct' fields
 ) >> "$outfn"
 
 
@@ -54,4 +54,4 @@ function makehreflinks() {
 
 echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
 echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
-echo '\manifestfield{Notary Witness}{\small '"$(tomlq -r .notary[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
+echo '\manifestfield{Notary Witness}{'"$(tomlq -r .notary[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"

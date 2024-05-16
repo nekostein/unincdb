@@ -24,6 +24,7 @@ case $1 in
     */UNINC.toml)
         dir="$(dirname "$1")"
         try_make "$dir/Charter.md" # Get hash file and LaTeX code
+        try_make "$dir/Appendix.md" # Get hash file and LaTeX code
         texsrc="src/Witness-$OFFICE.tex"
         ln -svf "$(realpath --relative-to="$dir" "$texsrc")" "$dir/$(basename "$texsrc")" # Put code into workdir
         bash "utils/pretoml-$OFFICE.sh" "$1" # Render TOML into LaTeX
@@ -42,11 +43,14 @@ case $1 in
         sha1sum "$1" | cut -d' ' -f1 > "$1.hash"
         pandoc -i "$1" -f gfm -t latex -o "$1.texpart"
         ;;
+    */Appendix.md)
+        pandoc -i "$1" -f gfm -t latex -o "$1.texpart"
+        ;;
     *.tex)
         cd "$(dirname "$1")" || exit 1
         xelatex "$(basename "$1")"
         ;;
-    vol*/Witness-*.pdf)
+    db/*/Witness-*.pdf)
         destfn="$(bash utils/helper-transformpdfpath.sh "$1")"
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"

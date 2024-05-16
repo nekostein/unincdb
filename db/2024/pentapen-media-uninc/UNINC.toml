@@ -1,15 +1,15 @@
 fullname = "PENTAPEN MEDIA UNINC (EXAMPLE DATA)"
 type = "Committee"
-date_creation = "2024-12-31"
+date_creation = "1970-01-01"
 status = "Dormant"
 fields = "Media; Journalism; Advertising"
 president = "JINYU MENG (a.k.a. MEGABITS)"
 secretary = "NERUTHES"
-charter_hash = "c58ba96ec3ff44f6f92838e8bbaea9d85e94343c"
+charter_hash = "fc076e021285db327c317965910e8a03aa5614db"
 addresses = [
     "https://github.com/pentapen",
     "https://pentapen.com"
 ]
 notary = [
-    "https://unincdb.nekostein.com/vol001/pentapen-media-uninc.pdf"
+    "https://unincdb.nekostein.com/2024/pentapen-media-uninc.pdf"
 ]

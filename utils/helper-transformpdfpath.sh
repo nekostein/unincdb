@@ -8,8 +8,8 @@ fi
 
 # Parse Word1 and Word2 from the input file path
 input_path=$1
-Word1=$(dirname "$input_path")
-Word2=$(basename "$input_path" | sed 's/^Witness-//' | sed 's/\.pdf$//')
+Word1="$(dirname "$input_path" | cut -d/ -f2-)"
+Word2="$(basename "$input_path" | sed 's/^Witness-//' | sed 's/\.pdf$//')"
 
 # Construct the new file path
 new_path="_dist/$Word2/$Word1.pdf"

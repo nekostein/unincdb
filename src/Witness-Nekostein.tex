@@ -1,9 +1,10 @@
 \documentclass[11pt,a4paper,hidelinks]{article}
 \usepackage[textwidth=37em,vmargin=25mm]{geometry}
 \usepackage{calc,fontspec,datetime2,hyperref,graphicx}
-\setmainfont{Brygada 1918}
-\setromanfont{Brygada 1918}
+\setmainfont{Latin Modern Roman}
+\setromanfont{Latin Modern Roman}
 \setsansfont{TeX Gyre Heros}
+\setmonofont{CMU Typewriter Text}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
@@ -27,14 +28,14 @@
 \newcommand{\cachedunincname}[0]{}
 \newcommand{\manifestfieldbig}[2]{
     \vskip 1.5em
-    \textsc{#1}\par
+    {#1}\par
     \vspace{3pt}\textbf{\large\strut\sffamily#2}
     \vskip 1.5em
     \renewcommand{\cachedunincname}{#2}
 }
 \newcommand{\manifestfield}[2]{
-    \parbox[t]{12.5em}{\strut\upshape#1}\hfill%
-    \parbox[t]{\linewidth-13em}{\raggedright\rmfamily\bfseries\strut#2}\par\vskip 4pt
+    \parbox[t]{11.5em}{\strut\upshape#1}\hfill%
+    \parbox[t]{\linewidth-12em}{\raggedright\rmfamily\bfseries\strut#2}\par\vskip 4pt
 }
 
 
@@ -46,12 +47,11 @@
 \vskip 1em
 
 The issuing agency hereby certifies that the following unincorporated organization has been filed
-with a Charter identifiable with the given hash.
+with a Charter identifiable with the given SHA-1 hash.
 
 \input{./UNINC.toml.Nekostein.1.texpart}
 
 
-% \manifestfield{Date of Issue}{\today}
 \vfill
 
 \sffamily
@@ -59,24 +59,42 @@ with a Charter identifiable with the given hash.
 \strut Query latest info from the UNINC Database at:\par
 \strut \input{./UNINC.toml.Nekostein.2.texpart}
 
-% \vskip 1em
-% \hrule
 
 \vskip 2em
 \raisebox{3pt}%
 {\MakeUppercase{Issued by NEKOSTEIN}}~~
 \hfill
-\includegraphics[height=8mm]{../../_dist/libvi/avatar/Nekostein-avatar.white_black.rounded.png}\par
+\includegraphics[height=8mm]{../../../_dist/libvi/avatar/Nekostein-avatar.white_black.rounded.png}\par
 
 \thispagestyle{empty}
 \clearpage
 \rmfamily\normalsize
 
 
-\setcounter{page}{1}
+
+
+\newcommand{\fakenewdoc}[0]{
+    \setcounter{page}{1}\setcounter{section}{0}
+}
+
+% Organization Charter
+\fakenewdoc
 \minititle{ORGANIZATION CHARTER}
 \hrule\vskip 1em
 
 \input{./Charter.md.texpart}
 \hrule\vskip 1em\clearpage
+
+% And then the Appendix
+\fakenewdoc
+\minititle{APPENDIX}
+\hrule
+
+\input{./Appendix.md.texpart}
+\hrule
 \end{document}
+
+
+
+% Notes:
+% - Run `nekostein-installvilib.sh' to install Nekostein VI lib.

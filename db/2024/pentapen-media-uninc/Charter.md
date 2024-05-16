@@ -4,15 +4,15 @@ Last revision: 2025-01-01
 
 # Preamble
 
-1. This organization is named PENTAPEN MEDIA UNINC.
+1. This organization is named PENTAPEN MEDIA UNINC, created on 1970-01-01.
 2. This organization is governed by a committee.
-3. The purpose of this organization is to maintain a collaborative online media that improve the adoption of computer technologies among common folks.
+3. The purpose of this organization is to maintain a collaborative online media that fosters the adoption of computer technologies among ordinary people in productive and elegant ways.
 4. The committee consists of commissioners. Special commissioners include a President and a Secretary.
 
 # Commissioners
 
 1. The following people are our commissioners (3 in total):
-   1. JINYU MENT (a.k.a. MEGABITS) (President)
+   1. JINYU MENG (a.k.a. MEGABITS) (President)
    2. NERUTHES (Secretary)
    3. LINCOLN GUANG
 2. When any officer resigns or dies, the committee shall elect a new officer.

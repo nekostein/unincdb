@@ -9,3 +9,5 @@ _dist
 .myenv
 deploy.sh
 vol*/*/Witness-*.tex
+
+Charter.md.asc
