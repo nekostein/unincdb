@@ -3,6 +3,9 @@
 touch .myenv
 source .env
 source .myenv
+mkdir -p _dist
+
+
 
 function try_make() {
     if [[ -e "$1" ]]; then
@@ -19,6 +22,9 @@ function hash_compare() {
         exit 2
     fi
 }
+
+
+
 
 case $1 in
     */UNINC.toml)
