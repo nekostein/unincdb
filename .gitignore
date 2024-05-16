@@ -8,6 +8,6 @@ _dist
 
 .myenv
 deploy.sh
-vol*/*/Witness-*.tex
+db/*.tex
 
 Charter.md.asc
