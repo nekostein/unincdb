@@ -69,4 +69,9 @@ case $1 in
             wrangler pages deploy _dist/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
         fi
         ;;
+    autolist.txt)
+        while read -r line; do
+            try_make "$line"
+        done < autolist.txt
+        ;;
 esac
