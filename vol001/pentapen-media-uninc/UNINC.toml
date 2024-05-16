@@ -11,6 +11,5 @@ addresses = [
     "https://pentapen.com"
 ]
 notary = [
-    "https://unincdb.nekostein.com/vol001/pentapen-media-uninc.pdf",
-    "https://unincdb.pages.dev/vol001/pentapen-media-uninc.pdf",
+    "https://unincdb.nekostein.com/vol001/pentapen-media-uninc.pdf"
 ]
