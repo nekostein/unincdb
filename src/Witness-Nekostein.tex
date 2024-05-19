@@ -1,10 +1,14 @@
-\documentclass[11pt,a4paper,hidelinks]{article}
-\usepackage[textwidth=37em,vmargin=25mm]{geometry}
-\usepackage{calc,fontspec,datetime2,hyperref,graphicx}
-\setmainfont{Latin Modern Roman}
-\setromanfont{Latin Modern Roman}
+\documentclass[10pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=40em,vmargin=30mm]{geometry}
+\usepackage{calc,fontspec,datetime2,hyperref,graphicx,xeCJK,xeCJKfntef}
+\setmainfont{TeX Gyre Heros}
+\setromanfont{TeX Gyre Heros}
 \setsansfont{TeX Gyre Heros}
-\setmonofont{CMU Typewriter Text}
+\setmonofont{JetBrains Mono}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKromanfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
@@ -18,13 +22,19 @@
 
 
 
+
+
+
+
+\newcommand{\fakenewdoc}[0]{
+    \setcounter{page}{1}\setcounter{section}{0}
+}
 \newcommand{\minititle}[1]{
     \begin{center}
         \Large\strut\bfseries
         #1
     \end{center}
 }
-
 \newcommand{\cachedunincname}[0]{}
 \newcommand{\manifestfieldbig}[2]{
     \vskip 1.5em
@@ -35,8 +45,12 @@
 }
 \newcommand{\manifestfield}[2]{
     \parbox[t]{11.5em}{\strut\upshape#1}\hfill%
-    \parbox[t]{\linewidth-12em}{\raggedright\rmfamily\bfseries\strut#2}\par\vskip 4pt
+    \parbox[t]{\linewidth-12em}{\raggedright\rmfamily\mdseries\strut#2}\par\vskip 4pt
 }
+
+\makeatletter
+\renewcommand{\verbatim@font}[0]{\ttfamily\footnotesize}
+\makeatother
 
 
 
@@ -62,7 +76,7 @@ with a Charter identifiable with the given SHA-1 hash.
 
 \vskip 2em
 \raisebox{3pt}%
-{\MakeUppercase{Issued by NEKOSTEIN}}~~
+{Free public service; courtesy from Nekostein.}~~
 \hfill
 \includegraphics[height=8mm]{../../../_dist/libvi/avatar/Nekostein-avatar.white_black.rounded.png}\par
 
@@ -73,9 +87,10 @@ with a Charter identifiable with the given SHA-1 hash.
 
 
 
-\newcommand{\fakenewdoc}[0]{
-    \setcounter{page}{1}\setcounter{section}{0}
-}
+
+
+
+
 
 % Organization Charter
 \fakenewdoc
@@ -83,7 +98,11 @@ with a Charter identifiable with the given SHA-1 hash.
 \hrule\vskip 1em
 
 \input{./Charter.md.texpart}
-\hrule\vskip 1em\clearpage
+\clearpage
+
+
+
+
 
 % And then the Appendix
 \fakenewdoc
@@ -92,6 +111,9 @@ with a Charter identifiable with the given SHA-1 hash.
 
 \input{./Appendix.md.texpart}
 \hrule
+
+
+
 \end{document}
 
 

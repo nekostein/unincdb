@@ -41,7 +41,7 @@ case $1 in
         for suffix in aux log out; do
             find "$dir" -name 'Witness-*'."$suffix" -delete
         done
-        for namespec in 'texput.log' '*.texpart' '*.pdf'; do
+        for namespec in 'texput.log' 'UNINC.*.texpart' '*.pdf'; do
             find "$dir" -name "$namespec" -delete
         done
         ;;
