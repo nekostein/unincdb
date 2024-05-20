@@ -151,7 +151,7 @@ This field makes cross reference easier.
 
 # Complete the Appendix
 
-There is no specific requirements on what the Appendix should include.
+There is no specific requirement on what the Appendix should include.
 But for everyone's convenience,
 digital signatures (GnuPG or OpenSSH or X.509, whatever toolkit you prefer)
 of the Charter by the President and the Secretary will be great.
