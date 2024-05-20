@@ -58,13 +58,13 @@ any notary authority may decline filings using languages beyond their ability.
 
 ```
 fullname = "SAMPLE DATA FOR UNINCDB TUTORIAL"
-type = "Committee"
+type = "Quasi-LLC"
 date_creation = "1970-01-01"
 status = "Active"
 fields = "Information Technology; Notary Service"
 president = "NERUTHES"
 secretary = "NERUTHES"
-charter_hash = "[......................................]"
+charter_hash = "ad832442bd31ba2f90722ddc081c0089047388d6"
 addresses = [
     "https://github.com/nekostein/unincdb",
 ]
