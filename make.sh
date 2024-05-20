@@ -1,9 +1,13 @@
 #!/bin/bash
 
+### Copyright (c) 2024 Neruthes. Published with the MIT license.
+
+
+
 touch .myenv
 source .env
 source .myenv
-mkdir -p _dist
+mkdir -p _dist .tmp
 
 
 
@@ -19,27 +23,30 @@ function hash_compare() {
     if ! grep -qs "$cached_hash" "$dir/UNINC.toml"; then
         echo "[ERROR] $dir/UNINC.toml has is incorrect! See $dir/Charter.md.hash"
         cat "$dir/Charter.md.hash"
-        exit 2
+        [[ "$IGNOREHASHMISMATCH" != y ]] && exit 2
     fi
 }
 
 
 
 
-case $1 in
-    */UNINC.toml)
+
+echo "[INFO] Working on make target: $1"
+
+case "$1" in
+    */UNINC.toml | */UNINC.*.toml)
         dir="$(dirname "$1")"
         try_make "$dir/Charter.md" # Get hash file and LaTeX code
         try_make "$dir/Appendix.md" # Get hash file and LaTeX code
-        texsrc="src/Witness-$OFFICE.tex"
-        ln -svf "$(realpath --relative-to="$dir" "$texsrc")" "$dir/$(basename "$texsrc")" # Put code into workdir
-        bash "utils/pretoml-$OFFICE.sh" "$1" # Render TOML into LaTeX
+        texsrc="authorities/$OFFICE/witness.tex"
+        ln -svf "$(realpath --relative-to="$dir" "$texsrc")" "$dir/witness-$OFFICE.tex" # Put code into workdir
+        bash "authorities/$OFFICE/toml2tex.sh" "$1" # Render TOML into LaTeX
         ### Compare hash
         hash_compare "$dir"
-        try_make "$dir/Witness-$OFFICE.tex" # Create PDF letter
-        try_make "$dir/Witness-$OFFICE.pdf" # Put PDF to _dist
-        for suffix in aux log out; do
-            find "$dir" -name 'Witness-*'."$suffix" -delete
+        try_make "$dir/witness-$OFFICE.tex" # Create PDF letter
+        try_make "$dir/witness-$OFFICE.pdf" # Put PDF to _dist
+        for suffix in log out; do
+            find "$dir" -name 'witness*'."$suffix" -delete
         done
         for namespec in 'texput.log' 'UNINC.*.texpart' '*.pdf'; do
             find "$dir" -name "$namespec" -delete
@@ -47,26 +54,27 @@ case $1 in
         ;;
     */Charter.md)
         sha1sum "$1" | cut -d' ' -f1 > "$1.hash"
-        pandoc -i "$1" -f gfm -t latex -o "$1.texpart"
+        pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
         ;;
     */Appendix.md)
-        pandoc -i "$1" -f gfm -t latex -o "$1.texpart"
+        pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
         ;;
     *.tex)
         cd "$(dirname "$1")" || exit 1
-        xelatex "$(basename "$1")"
+        "$LATEXBUILDCMD" -interaction=batchmode "$(basename "$1")"
         ;;
-    db/*/Witness-*.pdf)
+    db/*/witness-*.pdf)
         destfn="$(bash utils/helper-transformpdfpath.sh "$1")"
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
+        du -xhd1 "$(realpath "$destfn")"
         ;;
     deploy*)
         if [[ -e deploy.sh ]]; then
             exec ./deploy.sh
         else
             echo "[ERROR] Script file 'deploy.sh' is not found."
-            wrangler pages deploy _dist/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
+            wrangler pages deploy _dist/www/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
         fi
         ;;
     autolist.txt)

@@ -1,11 +1,19 @@
 #!/bin/bash
 
+
+### Copyright (c) 2024 Nekostein (https://nekostein.com/). All rights reserved.
+### Redistribution is permitted as part of the "unincdb" repository. Do not use otherwise.
+
+
+
+
 ### Using 'Format Nekostein' to render UNINC.toml into LaTeX
 ### Similar scripts may coexist in parallel as tools of different notary agencies
 
+
 tomlpath="$1"
 workdir="$(dirname "$tomlpath")"
-outfn="$1.Nekostein.1.texpart"
+outfn="$1.$OFFICE.1.texpart"
 echo '' > "$outfn"
 
 workdir_alt="$(cut -d/ -f2- <<< "$workdir")"
@@ -55,3 +63,17 @@ function makehreflinks() {
 echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
 echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
 echo '\manifestfield{Notary Witness}{'"$(tomlq -r .notary[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
+
+
+
+
+
+# Make sure that the smaller version exists
+if which timegate; then
+    timegate=timegate
+else
+    timegate=''
+fi
+export src="_dist/libvi/patterns/p01.js.png"
+export dst="_dist/libvi/patterns/p01.js.jpg"
+command "$timegate" convert "$src" -resize 2000x -background white -alpha remove -alpha off "$dst"

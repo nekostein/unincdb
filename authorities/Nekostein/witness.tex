@@ -1,12 +1,20 @@
-\documentclass[10pt,a4paper,hidelinks]{article}
-\usepackage[textwidth=40em,vmargin=30mm]{geometry}
-\usepackage{calc,fontspec,datetime2,hyperref,graphicx,xeCJK,xeCJKfntef}
+% Copyright (c) 2024 Nekostein (https://nekostein.com/). All rights reserved.
+% Redistribution is permitted as part of the "unincdb" repository. Do not use otherwise.
+
+
+
+
+
+\documentclass[11pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=39em,vmargin=30mm]{geometry}
+\usepackage{calc,fontspec,datetime2,hyperref,graphicx,xeCJK,xeCJKfntef,eso-pic}
+\usepackage{tabulary,longtable,booktabs} % Required by Pandoc!
 \setmainfont{TeX Gyre Heros}
 \setromanfont{TeX Gyre Heros}
 \setsansfont{TeX Gyre Heros}
 \setmonofont{JetBrains Mono}
-\setCJKmainfont{Noto Serif CJK SC}
-\setCJKromanfont{Noto Serif CJK SC}
+\setCJKmainfont{Noto Sans CJK SC}
+\setCJKromanfont{Noto Sans CJK SC}
 \setCJKsansfont{Noto Sans CJK SC}
 \setCJKmonofont{Noto Sans CJK SC}
 
@@ -14,11 +22,17 @@
 \setlength{\parskip}{2pt}
 \linespread{1.1}
 
-% Pandoc compatibility layer
+
+
+% ----------------------------------------------------------
+% BEGIN Pandoc compatibility layer
 \providecommand{\tightlist}[0]{%
-    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 }
 \providecommand{\url}[1]{#1}
+% \providecommand{\arraybackslash}[0]{}
+% END Pandoc compatibility layer
+% ----------------------------------------------------------
 
 
 
@@ -44,12 +58,13 @@
     \renewcommand{\cachedunincname}{#2}
 }
 \newcommand{\manifestfield}[2]{
-    \parbox[t]{11.5em}{\strut\upshape#1}\hfill%
-    \parbox[t]{\linewidth-12em}{\raggedright\rmfamily\mdseries\strut#2}\par\vskip 4pt
+    \parbox[t]{9.5em}{\strut\upshape#1}\hfill%
+    \parbox[t]{\linewidth-10em}{\raggedright\rmfamily\mdseries\strut#2}\par\vskip 5pt
 }
 
+
 \makeatletter
-\renewcommand{\verbatim@font}[0]{\ttfamily\footnotesize}
+\renewcommand{\verbatim@font}[0]{\ttfamily\small}
 \makeatother
 
 
@@ -57,7 +72,13 @@
 
 
 \begin{document}
-\minititle{LETTER OF NOTARY WITNESS FOR\\UNINCORPORATED ORGANIZATION}
+\newgeometry{textwidth=32em,vmargin=45mm}
+\AddToShipoutPictureBG*{%
+        \put(0.5\paperwidth-0.5\paperheight,0pt){%
+                \includegraphics[height=\paperheight]{../../../_dist/libvi/patterns/p01.js.jpg}%
+        }
+}
+\minititle{\fontspec{TeX Gyre Schola}LETTER OF NOTARY WITNESS FOR\\UNINCORPORATED ORGANIZATION}
 \vskip 1em
 
 The issuing agency hereby certifies that the following unincorporated organization has been filed
@@ -83,7 +104,7 @@ with a Charter identifiable with the given SHA-1 hash.
 \thispagestyle{empty}
 \clearpage
 \rmfamily\normalsize
-
+\restoregeometry
 
 
 
@@ -106,11 +127,10 @@ with a Charter identifiable with the given SHA-1 hash.
 
 % And then the Appendix
 \fakenewdoc
-\minititle{APPENDIX}
-\hrule
+\minititle{FILING APPENDIX}
+\hrule\vskip 1em
 
 \input{./Appendix.md.texpart}
-\hrule
 
 
 
