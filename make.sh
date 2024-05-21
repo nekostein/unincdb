@@ -79,7 +79,8 @@ case "$1" in
         ;;
     autolist.txt)
         while read -r line; do
-            try_make "$line"
+            try_make "$line" &
         done < autolist.txt
+        wait
         ;;
 esac
