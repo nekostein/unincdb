@@ -74,6 +74,6 @@ if which timegate; then
 else
     timegate=''
 fi
-export src="_dist/libvi/patterns/p01.js.png"
-export dst="_dist/libvi/patterns/p01.js.jpg"
-command "$timegate" convert "$src" -resize 2000x -background white -alpha remove -alpha off "$dst"
+export src="_dist/libvi/patterns/p02.js.png"
+export dst="_dist/libvi/patterns/p02.js.jpg"
+command "$timegate" convert "$src" -scale '50%' -background white -alpha remove -alpha off "$dst"
