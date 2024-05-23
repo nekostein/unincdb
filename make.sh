@@ -69,6 +69,11 @@ case "$1" in
         cp -a "$1" "$destfn"
         du -xhd1 "$(realpath "$destfn")"
         ;;
+    _dist/*.pdf) # example: _dist/www/PearInc/1970/myclub.pdf
+        # Get script: https://github.com/neruthes/NDevShellRC/blob/master/bin/pdftoimg
+        pdftoimg "$1" '' png
+        echo rm "$1-*"
+        ;;
     deploy*)
         if [[ -e deploy.sh ]]; then
             exec ./deploy.sh
@@ -81,6 +86,12 @@ case "$1" in
         while read -r line; do
             try_make "$line" &
         done < autolist.txt
+        wait
+        ;;
+    all)
+        while read -r line; do
+            try_make "$line" &
+        done < "authorities/$OFFICE/notarylist.txt"
         wait
         ;;
 esac
