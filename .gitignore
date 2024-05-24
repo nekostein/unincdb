@@ -5,6 +5,7 @@
 *.texpart
 
 _dist
+.tmp
 
 autoci.sh
 .myenv
