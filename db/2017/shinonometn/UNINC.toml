@@ -1,0 +1,14 @@
+fullname = "SHINONOME TELECOMMUNICATION NETWORK UNINC"
+type = "Quasi-LLC"
+date_creation = "2017-11-06"
+status = "Active"
+fields = "Information Technology; Telecommunication"
+president = "CATTEN LINGER"
+secretary = "CATTEN LINGER"
+charter_hash = "b263a79f4268dbc5658d588e49652ea84b83ffab"
+addresses = [
+    "https://shinonometn.com",
+]
+witness = [
+    "https://unincdb.nekostein.com/2017/shinonometn.pdf"
+]

@@ -7,7 +7,7 @@
 
 \documentclass[11pt,a4paper,hidelinks]{article}
 \usepackage[textwidth=39em,tmargin=30mm,bmargin=30mm]{geometry}
-\usepackage{calc,fontspec,datetime2,hyperref,graphicx,xeCJK,xeCJKfntef,eso-pic}
+\usepackage{calc,fontspec,datetime2,hyperref,graphicx,xeCJK,xeCJKfntef,eso-pic,microtype}
 \usepackage{tabulary,longtable,booktabs} % Required by Pandoc!
 \setmainfont{TeX Gyre Heros}
 \setromanfont{TeX Gyre Heros}
@@ -53,13 +53,13 @@
 \newcommand{\manifestfieldbig}[2]{
     \vskip 1.5em
     {#1}\par
-    \vspace{3pt}\textbf{\large\strut\sffamily#2}
+    \vspace{3pt}\textbf{\normalsize\strut\scalebox{1.0}[1.1]{#2}}
     \vskip 1.5em
     \renewcommand{\cachedunincname}{#2}
 }
 \newcommand{\manifestfield}[2]{
-    \parbox[t]{9.5em}{\strut\upshape#1}\hfill%
-    \parbox[t]{\linewidth-10em}{\raggedright\rmfamily\mdseries\strut#2}\par\vskip 5pt
+    \parbox[t]{9.5em}{\strut#1}\hfill%
+    \parbox[t]{\linewidth-10em}{\raggedright\mdseries\strut{#2}}\par\vskip 5pt
 }
 
 
@@ -72,15 +72,17 @@
 
 
 \begin{document}
-\newgeometry{textwidth=32em,tmargin=45mm,bmargin=35mm}
+\newgeometry{textwidth=33em,tmargin=45mm,bmargin=35mm}
 \AddToShipoutPictureBG*{%
-        \put(0.5\paperwidth-0.5\paperheight,0pt){%
-                \includegraphics[height=\paperheight]{../../../_dist/libvi/patterns/p02.js.jpg}%
-        }
+    \put(0.5\paperwidth-0.5\paperheight,0pt){%
+        % \includegraphics[height=\paperheight]{../../../_dist/libvi/patterns/p02.js.jpg}%
+        \includegraphics[height=\paperheight]{../../../_dist/libvi/patterns/p02.js.small.jpg}%
+    }
 }
-\minititle{\fontspec{TeX Gyre Schola}LETTER OF NOTARY WITNESS FOR\\UNINCORPORATED ORGANIZATION}
+\minititle{\fontspec{TeX Gyre Schola}LETTER OF WITNESS FOR\\UNINCORPORATED ORGANIZATION}
 \vskip 1em
 
+% \fontspec{Latin Modern Roman}
 The issuing agency hereby certifies that the following unincorporated organization has been filed
 with a Charter identifiable with the given SHA-1 hash.
 
@@ -139,22 +141,32 @@ with a Charter identifiable with the given SHA-1 hash.
 
 % Extra Appendix
 \fakenewdoc
-\minititle{STATUTORY STATEMENT BY NOTARY OFFICE}
+\minititle{STATUTORY STATEMENT BY WITNESS OFFICE}
 \hrule\vskip 1em
 
 \section{Intellectual Properties}
 \begin{enumerate}
-    \item The first page (``the letter''), including its background pattern, is a copyrighted work.
-    \item The ``Nekostein'' workmark and the ``excited cat face'' picture may be unregistered trademarks of Nekostein.
-    \item Permission of redistribution is granted to the extent of sharing this digital PDF and its printed copies.
+    \item The first page (``the letter''), including its background pattern (``the guilloche''), is a copyrighted work.
+    \item The ``Nekostein'' wordmark and the ``excited cat face'' picture may be unregistered trademarks of Nekostein.
+    \item Permission of redistribution is granted to the extent of sharing this digital PDF,
+        and subsequently its printed copies and screenshots.
 \end{enumerate}
 
 \section{Miscellaneous}
 \begin{enumerate}
     \item Nekostein is an unincorporated game development team consisting of Neruthes and MIAO\_OAIM.
+    \item For more information, visit our website at ``\href{https://nekostein.com/}{https://nekostein.com/}''.
 \end{enumerate}
 
+\section{List of Requested Letters of Witness}
+The unincorporated organization has requested letters of witness from the following witness agencies.
 
+\begin{itemize}
+    \input{./UNINC.toml.Nekostein.99.texpart}
+\end{itemize}
+
+\section{Raw UNINC.toml File Content}
+\input{./UNINC.toml.Nekostein.299.texpart}
 
 
 \end{document}

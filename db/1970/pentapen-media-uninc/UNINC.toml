@@ -10,6 +10,6 @@ addresses = [
     "https://github.com/pentapen",
     "https://pentapen.com"
 ]
-notary = [
+witness = [
     "https://unincdb.nekostein.com/1970/pentapen-media-uninc.pdf"
 ]

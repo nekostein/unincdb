@@ -8,7 +8,7 @@
 
 
 ### Using 'Format Nekostein' to render UNINC.toml into LaTeX
-### Similar scripts may coexist in parallel as tools of different notary agencies
+### Similar scripts may coexist in parallel as tools of different witness agencies
 
 
 tomlpath="$1"
@@ -36,6 +36,7 @@ function printfield() {
 
 (
     printfield 'Business Name' fullname manifestfieldbig
+    echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}'
     printfield 'Type' type
     printfield 'Date of Creation' date_creation
     printfield 'Status' status
@@ -60,11 +61,12 @@ function makehreflinks() {
 
 
 
-echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
+# echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
 echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
-echo '\manifestfield{Notary Witness}{'"$(tomlq -r .notary[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
 
+tomlq -r .witness[] "$tomlpath" | makehreflinks | sed 's/^/\\item /' >> "$1.Nekostein.99.texpart"
 
+echo "<pre>$(cat "$tomlpath")</pre>" | pandoc -f html -t latex -o "$1.Nekostein.299.texpart"
 
 
 
@@ -75,5 +77,6 @@ else
     timegate=''
 fi
 export src="_dist/libvi/patterns/p02.js.png"
-export dst="_dist/libvi/patterns/p02.js.jpg"
-command "$timegate" convert "$src" -scale '50%' -background white -alpha remove -alpha off "$dst"
+export dst="_dist/libvi/patterns/p02.js.small.jpg"
+command "$timegate" convert "$src" -colors 40 -scale '50%' -quality 77 -background white -alpha remove -alpha off "$dst"
+du -xhd1 "$dst"

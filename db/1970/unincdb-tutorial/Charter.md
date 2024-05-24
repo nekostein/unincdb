@@ -12,15 +12,15 @@ There are occasions that a few people want to setup some rules on
 how their small organization should operate,
 but the cheapest legal instruments are not really affordable until things start generating revenues.
 
-If you intend to become a notary authority, you will later find a section for this topic.
+If you intend to become a witness authority, you will later find a section for this topic.
 
 
 # Workflow Overview
 - Write a Charter and an Appendix.
 - Write the formatted "UNINC.toml" file.
 - Submit the 3 files ("Charter.md", "Appendix.md", "UNINC.toml") to this repository via a pull request.
-- Request a notary authority to issue a letter of notary witness.
-- Find your letter published in a database hosted by the notary authority.
+- Request a witness authority to issue a letter of witness.
+- Find your letter published in a database hosted by the witness authority.
 
 
 
@@ -38,7 +38,7 @@ Many are written by lawyers and agencies and they are worth your reading since y
 
 Use basic Markdown syntax. Avoid inline code; prefer quotation marks when possible.
 Keep in mind that printed stuff will not necessarily be colorful
-and there is no guarantee that a notary authority will use different fonts for "&lt;code>" and "&lt;pre>".
+and there is no guarantee that a witness authority will use different fonts for "&lt;code>" and "&lt;pre>".
 
 
 
@@ -54,21 +54,21 @@ First have a look at the "UNINC.toml" file of this tutorial data entity.
 It should contain most metadata fields that would otherwise appear on a Certificate of Incorporation.
 
 While values of the data fields are not necessarily in English,
-any notary authority may decline filings using languages beyond their ability.
+any witness authority may decline filings using languages beyond their ability.
 
 ```
 fullname = "SAMPLE DATA FOR UNINCDB TUTORIAL"
 type = "Quasi-LLC"
 date_creation = "1970-01-01"
 status = "Active"
-fields = "Information Technology; Notary Service"
+fields = "Information Technology; Public Database"
 president = "NERUTHES"
 secretary = "NERUTHES"
 charter_hash = "ad832442bd31ba2f90722ddc081c0089047388d6"
 addresses = [
     "https://github.com/nekostein/unincdb",
 ]
-notary = [
+witness = [
     "https://unincdb.nekostein.com/1970/unincdb-tutorial.pdf"
 ]
 ```
@@ -141,8 +141,8 @@ The algorithm is no longer secure, but we cannot bear longer hashes.
 ### "addresses"
 A list of addresses. Should be URLs in most situations. A street address may or may not be accepted.
 
-### "notary"
-A list of URLs where letters of notary witness can be found.
+### "witness"
+A list of URLs where letters of witness can be found.
 This field makes cross reference easier.
 
 
@@ -167,19 +167,19 @@ gpg --pinentry-mode loopback --output - \
 
 
 
-# Notary Authorities
+# Witness Authorities
 
 ## Data Autonomy
 This git repository is designed to afford great portability,
-especially for notary authorities which prefer not to push data back to the upstream.
-A notary authority can keep its tools private even if it exchanges data with the upstream.
+especially for witness authorities which prefer not to push data back to the upstream.
+A witness authority can keep its tools private even if it exchanges data with the upstream.
 
-The following subsections explain how you can set up your own notary authority.
+The following subsections explain how you can set up your own witness authority.
 
 Note: For each environmental variable found in ".env", make sure to configure its value in ".myenv".
 
 ## Private Tools
-A notary authority (e.g. "Pear Inc") shall prepare the following tools
+A witness authority (e.g. "Pear Inc") shall prepare the following tools
 in its private directory "authorities/PearInc".
 
 ### "toml2tex.sh"
@@ -215,5 +215,5 @@ In short, the building workflow consists of several stages:
 - Use XeLaTeX to build the symlink file. Note: If you want to use a different LaTeX building command, override using "$LATEXBUILDCMD".
 - Move the PDF artifact to "_dist/www/PearInc/1970/unincdb-tutorial.pdf".
 
-Now you can publish the directory "_dist/www/PearInc" as a website so people can see notary letters you made.
+Now you can publish the directory "_dist/www/PearInc" as a website so people can see witness letters you made.
 
