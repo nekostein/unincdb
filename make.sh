@@ -76,7 +76,7 @@ case "$1" in
         # echo rm "$1-*"
         base="$(basename "$1" | cut -d. -f1)"
         cd "$(dirname "$1")"
-        pdftoppm -png -r 300 -f 1 -l 1 "$base".pdf "$base"
+        pdftoppm -png -r 150 -f 1 -l 1 "$base".pdf "$base"
         mv "$base-1.png" "$base.png"
         realpath "$base".png | xargs du -h
         ;;
