@@ -72,12 +72,11 @@ case "$1" in
         ;;
     _dist/*.pdf)
         # example: _dist/www/PearInc/1970/myclub.pdf
-        # Get script: https://github.com/neruthes/NDevShellRC/blob/master/bin/pdftoimg
-        # pdftoimg "$1" '' png
-        # echo rm "$1-*"
+        ### Generate a PNG for the first page
         base="$(basename "$1" | cut -d. -f1)"
+        [[ -z "$DPI" ]] && DPI=150
         cd "$(dirname "$1")"
-        pdftoppm -png -r 150 -f 1 -l 1 "$base".pdf "$base"
+        pdftoppm -png -r "$DPI" -f 1 -l 1 "$base".pdf "$base"
         mv "$base-1.png" "$base.png"
         realpath "$base".png | xargs du -h
         ;;
