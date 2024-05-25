@@ -68,6 +68,7 @@ case "$1" in
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
         du -xhd1 "$(realpath "$destfn")"
+        [[ "$PNG" == y ]] && bash "$0" "$destfn"
         ;;
     _dist/*.pdf)
         # example: _dist/www/PearInc/1970/myclub.pdf
