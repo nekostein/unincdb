@@ -59,7 +59,7 @@ case "$1" in
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
         dirname="_dist/www/$OFFICE/$(cut -d/ -f2 <<< "$1")"
         mkdir -p "$dirname"
-        cp -a "$1" "$dirname/$(cut -d/ -f3 <<< "$1").Charter.md.txt"
+        cp -a "$1" "$dirname/$(cut -d/ -f3 <<< "$1").md"
         ;;
     */Appendix.md)
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
