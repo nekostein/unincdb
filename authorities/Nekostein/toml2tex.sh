@@ -33,8 +33,11 @@ function printfield() {
 }
 
 
+charter_md_url="https://unincdb.nekostein.com/$workdir_alt.md"
 
 (
+    printf '\\renewcommand{\\cachedunincname}[0]'
+    printf '{%s}\n' "$(tomlq -r .fullname "$tomlpath")"
     printfield 'Business Name' fullname manifestfieldbig
     echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}'
     printfield 'Type' type
@@ -42,7 +45,13 @@ function printfield() {
     printfield 'Status' status
     printfield 'President' president
     printfield 'Secretary' secretary
-    echo '\manifestfield{Charter Hash}{'"$(cat "$workdir/Charter.md.hash")"'}'
+    
+    hash_real="$(cat "$workdir/Charter.md.hash")"
+    echo '\manifestfield{Charter Hash}{'"$(
+        echo -n '\href'
+        printf '{%s}' "$charter_md_url"
+        printf '{%s}' "$hash_real"
+    )"'}'
     printfield 'Fields of Conduct' fields
 ) >> "$outfn"
 
@@ -61,13 +70,11 @@ function makehreflinks() {
 
 
 
-# echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}' >> "$outfn"
 echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehreflinks | process_multiline_text)"'}' >> "$outfn"
 
-tomlq -r .witness[] "$tomlpath" | makehreflinks | sed 's/^/\\item /' >> "$1.Nekostein.99.texpart"
+tomlq -r .witness[] "$tomlpath" | makehreflinks | sed 's/^/\\item /' > "$1.Nekostein.99.texpart"
 
-echo "<pre>$(cat "$tomlpath")</pre>" | pandoc -f html -t latex -o "$1.Nekostein.299.texpart"
-
+echo "$charter_md_url" | makehreflinks > "$1.Nekostein.101.texpart"
 
 
 # Make sure that the smaller version exists
@@ -77,6 +84,6 @@ else
     timegate=''
 fi
 export src="_dist/libvi/patterns/p02.js.png"
-export dst="_dist/libvi/patterns/p02.js.small.jpg"
-command "$timegate" convert "$src" -colors 40 -scale '50%' -quality 77 -background white -alpha remove -alpha off "$dst"
-du -xhd1 "$dst"
+export dst="_dist/libvi/patterns/p02.js.small.png"
+# command "$timegate" convert "$src" -colors 40 -scale '75%' -quality 80 -background white -alpha remove -alpha off "$dst"
+# du -xhd1 "$dst"

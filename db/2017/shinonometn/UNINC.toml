@@ -12,3 +12,9 @@ addresses = [
 witness = [
     "https://unincdb.nekostein.com/2017/shinonometn.pdf"
 ]
+
+
+[upstream]
+toml = "https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/unincdb/d06542b2736a1a09d7ed0dd7/UNINC.toml"
+charter = "https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/unincdb/09facf393e60caa30c75a48f/Charter.md"
+appendix = "https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/unincdb/f3e67438ddf59552f05cff2f/Appendix.md"
