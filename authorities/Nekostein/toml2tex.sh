@@ -33,13 +33,13 @@ function printfield() {
 }
 
 
-charter_md_url="https://unincdb.nekostein.com/$workdir_alt.md633251ca87f8b59d1c986eb508d9b22634dacf02633251ca87f8b59d1c986eb508d9b22634dacf02"
+charter_md_url="https://unincdb.nekostein.com/$workdir_alt.md"
 
 (
     printf '\\renewcommand{\\cachedunincname}[0]'
     printf '{%s}\n' "$(tomlq -r .fullname "$tomlpath")"
     printfield 'Business Name' fullname manifestfieldbig
-    echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}'
+    # echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}'
     printfield 'Type' type
     printfield 'Date of Creation' date_creation
     printfield 'Status' status

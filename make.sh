@@ -98,7 +98,8 @@ case "$1" in
         ;;
     gc)
         find "_dist/www/$OFFICE" -name '*.pdf' | while read -r line; do
-            pngpath="$(sed 's/.pdf$/.png/' <<< "$line")"
+            pngpath="${line/.pdf/.png}"
+            echo "pngpath=$pngpath"
             [[ -e "$pngpath" ]] && rm "$pngpath"
         done
         ;;
@@ -111,6 +112,7 @@ case "$1" in
         fi
         ;;
     all)
+        ./make.sh gc
         while read -r line; do
             try_make "$line"/UNINC.toml
         done < "authorities/$OFFICE/witnesslist.txt"
