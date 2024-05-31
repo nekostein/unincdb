@@ -69,12 +69,15 @@ case "$1" in
         rsync -av --delete --mkpath "$rawdir"/ .workdir/
         "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=batchmode .workdir/"$(basename "$1")"
         ;;
-    authorities/*/dbindex.tex)
+    dbindex)
+        texpath="authorities/$OFFICE/dbindex.tex"
         bash utils/makedbmeta.sh
         # cd "$(dirname "$1")" || exit 1
-        "$LATEXBUILDCMD" -output-directory="$(dirname "$1")" -interaction=batchmode "$(basename "$1")"
-        pdffn="$(sed 's/.tex$/.pdf/' <<< "$1")"
-        echo "pdffn=$pdffn"
+        "$LATEXBUILDCMD" -output-directory="$(dirname "$texpath")" -interaction=batchmode "$(basename "$texpath")"
+        pdffn="$(sed 's/.tex$/.pdf/' <<< "$texpath")"
+        dest="_dist/www/$OFFICE/dbindex.pdf"
+        cp -a "$pdffn" "$dest"
+        realpath "$dest" | xargs du -h
         ;;
     db/*/witness-*.pdf)
         destfn="$(bash utils/helper-transformpdfpath.sh "$1")"
@@ -88,7 +91,7 @@ case "$1" in
         ### Generate a PNG for the first page
         base="$(basename "$1" | cut -d. -f1)"
         [[ -z "$DPI" ]] && DPI=150
-        cd "$(dirname "$1")"
+        cd "$(dirname "$1")" || exit 1
         pdftoppm -png -r "$DPI" -f 1 -l 1 "$base".pdf "$base"
         mv "$base-1.png" "$base.png"
         realpath "$base".png | xargs du -h
@@ -96,7 +99,7 @@ case "$1" in
     gc)
         find "_dist/www/$OFFICE" -name '*.pdf' | while read -r line; do
             pngpath="$(sed 's/.pdf$/.png/' <<< "$line")"
-            echo find "$pngpath" -delete
+            [[ -e "$pngpath" ]] && rm "$pngpath"
         done
         ;;
     deploy*)

@@ -34,7 +34,6 @@ mv "$LIST".new "$LIST"
 years="$(cut -d/ -f2 "$LIST" | sort -ru)"
 
 
-echo "[INFO] Found years $years"
 for year in $years; do
     printf '\n\n\\thisyear{%s}\n\n' "$year"
     grep "^db/$year/" "$LIST" | while read -r line; do
@@ -43,4 +42,3 @@ for year in $years; do
 done  > "$OUT"
 
 
-cat "$OUT"
