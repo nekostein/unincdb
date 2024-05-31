@@ -2,10 +2,11 @@
 \input{_dist/libvi/latex/ns-report.tex}
 
 \setlength{\tabcolsep}{0pt}
+\setlength{\tabulinesep}{0pt}
 
 
 
-\newcommand{\thisyear}[1]{\chapter*{\strut#1}}
+\newcommand{\thisyear}[1]{\chapter{\strut Year #1}}
 \newcommand{\bizinfo}[8]{
     % argv: fullname date_creation type status president secretary charter_hash URL
     \parbox{\linewidth}{
@@ -16,10 +17,10 @@
             \strut #3 &
             \strut #4 \\
         \end{tabu}\par
-        \begin{tabu}{ll}
+        \begin{tabu}{XX[2]}
             \strut PRESIDENT & \strut #5 \\
             \strut SECRETARY & \strut #6 \\
-            \strut CHARTER HASH~~~~ & \strut #7 \\
+            \strut CHARTER HASH~~~~~~~~ & \strut #7 \\
         \end{tabu}\par\vskip 5pt
         \sffamily
         \strut\href{https://unincdb.nekostein.com/#8.pdf}{https://unincdb.nekostein.com/#8.pdf}
@@ -28,6 +29,8 @@
 
 \begin{document}
 \nsreportcover{\today}{UNINCDB Workgroup}{UNINCDB\\Index of Letters of Witness}{Nekostein HQ}{Database Snapshot}
+
+\tableofcontents
 
 \input{authorities/Nekostein/dblist.texpart}
 \end{document}

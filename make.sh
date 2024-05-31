@@ -67,7 +67,7 @@ case "$1" in
     db/*.tex)
         rawdir="$(dirname "$1")"
         rsync -av --delete --mkpath "$rawdir"/ .workdir/
-        "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=batchmode .workdir/"$(basename "$1")"
+        "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=errorstopmode .workdir/"$(basename "$1")"
         ;;
     dbindex)
         texpath="authorities/$OFFICE/dbindex.tex"

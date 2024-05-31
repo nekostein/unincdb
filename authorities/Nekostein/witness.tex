@@ -7,6 +7,13 @@
 \newgeometry{textwidth=37em,rmargin=25mm,tmargin=90mm,bmargin=37mm}
 
 
+\setlength{\sendtoareaextraraise}{58.5pt}
+
+
+
+
+
+
 % ----------------------------------------------------------
 % BEGIN Pandoc compatibility layer
 \providecommand{\tightlist}[0]{%
@@ -22,17 +29,29 @@
 
 
 
+\newcommand{\makeeof}[0]{
+    \nopagebreak\par\nopagebreak\vskip 1em\begin{center}%
+        \rmfamily%
+        *~~~~~~*~~~~~~*%
+    \end{center}
+}
+
 
 \newcommand{\fakenewdoc}[0]{
     \setcounter{section}{0}
 }
+
+\newcounter{minititleding}
+\setcounter{minititleding}{171}
 \newcommand{\minititle}[1]{
     \toparea{%
         \center%
         \Large\bfseries\sffamily%
         #1%
     }
-    \sendto{{\huge\ding{70}}}
+    % \sendto{{\huge\ding{70}}}
+    % \sendto{{\huge\ding{\arabic{minititleding}}}}
+    % \stepcounter{minititleding}
 }
 \newcommand{\cachedunincname}[0]{}
 \newcommand{\manifestfieldbig}[2]{
@@ -57,7 +76,7 @@
 
 \begin{document}
 \setupdecorations
-\minititle{LETTER OF WITNESS FOR\\UNINCORPORATED BUSINESS}
+\minititle{LETTER OF WITNESS FOR\\UNINCORPORATED ORGANIZATION}
 
 
 The issuing agency hereby certifies that the following unincorporated organization has been filed
@@ -86,10 +105,10 @@ with a Charter identifiable with the given SHA-1 hash.
 
 % Organization Charter
 \fakenewdoc
-\minititle{ORGANIZATION CHARTER}
+\minititle{ATTACHMENT 1\\ORGANIZATION CHARTER}
 
 
-\input{.workdir/Charter.md.texpart}
+\input{.workdir/Charter.md.texpart}\makeeof
 \clearpage
 
 
@@ -98,10 +117,10 @@ with a Charter identifiable with the given SHA-1 hash.
 
 % And then the Appendix
 \fakenewdoc
-\minititle{APPENDIX}
+\minititle{ATTACHMENT 2\\FILING APPENDIX}
 
 
-\input{.workdir/Appendix.md.texpart}
+\input{.workdir/Appendix.md.texpart}\makeeof
 \clearpage
 
 
@@ -110,7 +129,7 @@ with a Charter identifiable with the given SHA-1 hash.
 
 % Extra Statement
 \fakenewdoc
-\minititle{STATUTORY STATEMENT BY\\THE WITNESS AGENCY}
+\minititle{ATTACHMENT 3\\STATUTORY STATEMENT BY NEKOSTEIN}
 
 
 \section{Intellectual Properties}
@@ -133,7 +152,7 @@ with a Charter identifiable with the given SHA-1 hash.
     \end{itemize}
 \end{enumerate}
 
-% \section{List of Requested Letters of Witness}
+\makeeof
 
 
 
