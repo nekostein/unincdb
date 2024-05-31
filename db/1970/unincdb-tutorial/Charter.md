@@ -74,12 +74,14 @@ witness = [
 ```
 
 ### "fullname"
-Declare the full name of your business. Incorporated companies often use "Inc", "Co.,Ltd", or "LLC".
+Declare the full name of your business. Incorporated companies often use "Inc", "Ltd", or "LLC".
 Similarly, choose from the following suffix options: "Uninc" and "Club".
 
 Consider some name like "Rusty Lake Swim Safety Station Uninc" or "Rusty Lake Fishing Club".
 
 Write in all uppercase.
+
+Recommended maximum length: 40 letters.
 
 ### "type"
 Declare the type of the organization.
@@ -211,8 +213,8 @@ In short, the building workflow consists of several stages:
 
 - Use Pandoc to generate ".texpart" components for "Charter.md" and "Appendix.md".
 - Run the "toml2tex.sh" script to generate ".texpart" components to be used in the LaTeX template.
-- Symlink from "authorities/PearInc/witness.tex" to "db/1970/unincdb-tutorial/witness-PearInc.tex".
-- Use XeLaTeX to build the symlink file. Note: If you want to use a different LaTeX building command, override using "$LATEXBUILDCMD".
+- Copy from "authorities/PearInc/witness.tex" to "db/1970/unincdb-tutorial/witness-PearInc.tex".
+- Use XeLaTeX to build the destination file. Note: If you want to use a different LaTeX building command, override using "$LATEXBUILDCMD".
 - Move the PDF artifact to "_dist/www/PearInc/1970/unincdb-tutorial.pdf".
 
 Now you can publish the directory "_dist/www/PearInc" as a website so people can see witness letters you made.

@@ -5,7 +5,7 @@ status = "Active"
 fields = "Information Technology; Witness Service"
 president = "NERUTHES"
 secretary = "NERUTHES"
-charter_hash = "67c3be594d7f389db15dfdd03e982b0789dd36d7"
+charter_hash = "633251ca87f8b59d1c986eb508d9b22634dacf02"
 addresses = [
     "https://github.com/nekostein/unincdb",
 ]
