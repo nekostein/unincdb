@@ -112,7 +112,7 @@ case "$1" in
         fi
         ;;
     all)
-        ./make.sh gc
+        [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc
         while read -r line; do
             try_make "$line"/UNINC.toml
         done < "authorities/$OFFICE/witnesslist.txt"
