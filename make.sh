@@ -84,7 +84,7 @@ case "$1" in
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
         du -xhd1 "$(realpath "$destfn")"
-        [[ "$PNG" == y ]] && bash "$0" "$destfn"
+        [[ "$MAKE_PNG" == y ]] && bash "$0" "$destfn"
         ;;
     _dist/*.pdf)
         # example: _dist/www/PearInc/1970/myclub.pdf
@@ -93,15 +93,14 @@ case "$1" in
         [[ -z "$DPI" ]] && DPI=150
         cd "$(dirname "$1")" || exit 1
         pdftoppm -png -r "$DPI" -f 1 -l 1 "$base".pdf "$base"
-        mv "$base-1.png" "$base.png"
+        pngfn="$(find . -name "${base}*.png" | head -n1)"
+        mv "$pngfn" "$base.png"
         realpath "$base".png | xargs du -h
         ;;
     gc)
-        find "_dist/www/$OFFICE" -name '*.pdf' | while read -r line; do
-            pngpath="${line/.pdf/.png}"
-            echo "pngpath=$pngpath"
-            [[ -e "$pngpath" ]] && rm "$pngpath"
-        done
+        gc="$2"
+        [[ -z $gc ]] && gc=png
+        bash utils/gc.sh "$2"
         ;;
     deploy*)
         if [[ -e deploy.sh ]]; then
@@ -112,7 +111,7 @@ case "$1" in
         fi
         ;;
     all)
-        [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc
+        [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc png
         while read -r line; do
             try_make "$line"/UNINC.toml
         done < "authorities/$OFFICE/witnesslist.txt"
