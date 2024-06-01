@@ -130,6 +130,7 @@ case "$1" in
         rsync -a "$ORGDIR/" ".workdir/"
         if ! bash "$docprefix/prepare.sh"; then
             echo "[WARNING] Cannot proceed with ./make.sh $* "
+            echo "          Because the 'prepare.sh' script asked to skip it."
             exit 1
         fi
         cp -a "$docprefix/$docname.tex" "$texpath"
