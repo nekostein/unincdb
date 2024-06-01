@@ -8,4 +8,9 @@ case $1 in
             [[ -e "$pngpath" ]] && rm "$pngpath"
         done
         ;;
+    workdir)
+        find .workdir -type f -delete
+        ;;
+    db)
+        find db -name '*.texpart' -type f -delete
 esac

@@ -64,22 +64,24 @@ case "$1" in
     */Appendix.md)
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
         ;;
-    db/*.tex)
+    db*/*.tex)
+        ### Note: Should support alternative prefix 'db-private'!
         rawdir="$(dirname "$1")"
         rsync -av --delete --mkpath "$rawdir"/ .workdir/
         "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=errorstopmode .workdir/"$(basename "$1")"
+        ./make.sh gc db
         ;;
     dbindex)
         texpath="authorities/$OFFICE/dbindex.tex"
         bash utils/makedbmeta.sh
-        # cd "$(dirname "$1")" || exit 1
-        "$LATEXBUILDCMD" -output-directory="$(dirname "$texpath")" -interaction=batchmode "$(basename "$texpath")"
+        "$LATEXBUILDCMD" -output-directory="$(dirname "$texpath")" -interaction=errorstopmode "$(basename "$texpath")"
+        "$LATEXBUILDCMD" -output-directory="$(dirname "$texpath")" -interaction=errorstopmode "$(basename "$texpath")"
         pdffn="$(sed 's/.tex$/.pdf/' <<< "$texpath")"
         dest="_dist/www/$OFFICE/dbindex.pdf"
         cp -a "$pdffn" "$dest"
         realpath "$dest" | xargs du -h
         ;;
-    db/*/witness-*.pdf)
+    db*/*/witness-*.pdf)
         destfn="$(bash utils/helper-transformpdfpath.sh "$1")"
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
@@ -116,8 +118,33 @@ case "$1" in
             try_make "$line"/UNINC.toml
         done < "authorities/$OFFICE/witnesslist.txt"
         ;;
-    meta|meta/)
-        bash utils/makedbmeta.sh
+    alt)
+        # ./make alt example db/1970/unincdb-tutorial
+        ./make.sh gc workdir
+        docname="$2"
+        export ORGDIR="$(realpath --relative-to="$PWD" "$3")"
+        docprefix="authorities/$OFFICE/altdoc/$docname"
+        texpath=".workdir/$docname.tex"
+        pdfpath1=".workdir/$docname.pdf"
+        export PDFPATH_DEST="_dist/altdocs/$OFFICE/$ORGDIR.$docname.pdf"
+        rsync -a "$ORGDIR/" ".workdir/"
+        bash "$docprefix/prepare.sh"
+        cp -a "$docprefix/$docname.tex" "$texpath"
+        "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=errorstopmode "$texpath"
+        dirname "$PDFPATH_DEST" | xargs mkdir -p
+        cp -a "$pdfpath1" "$PDFPATH_DEST"
+        realpath "$PDFPATH_DEST" | xargs du -h
+        ;;
+    altall)
+        find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 | cut -d/ -f4 | while read -r docname; do
+            while read -r orgdir; do
+                ./make.sh alt "$docname" "$orgdir"
+            done < "authorities/$OFFICE/witnesslist.txt"
+        done
+        ;;
+    '')
+        echo "[INFO] You should specify a build target (a relative path)."
+        echo "[INFO] Non-path targets:  all alt altall dbindex gc"
         ;;
     *)
         [[ -e "$1"UNINC.toml ]] && ./make.sh "$1"UNINC.toml

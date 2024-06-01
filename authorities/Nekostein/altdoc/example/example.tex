@@ -1,0 +1,40 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[textwidth=40em]{geometry}
+\usepackage{calc,fontspec,inconsolata-nerd-font,datetime2}
+
+\setmainfont{TeX Gyre Termes}
+\setromanfont{TeX Gyre Termes}
+% \setmonofont{Inconsolata}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\title{Example Alternative Document}
+\author{UNINCDB Workgroup @ Nekostein HQ}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+This is an example alternative document.
+
+You should be able to build this document using the following command:
+
+
+
+\input{.workdir/example.cmd.texpart}
+
+\vskip 2em\hrule\vskip 2em
+
+
+
+
+Then you can find the PDF here:
+
+\input{.workdir/example.pdfpath.texpart}
+
+\vskip 2em\hrule\vskip 2em
+
+
+
+\input{.workdir/example.data.texpart}
+\end{document}

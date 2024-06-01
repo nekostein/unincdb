@@ -8,6 +8,7 @@
 _dist
 .tmp
 .workdir
+db-private
 
 autoci.sh
 .myenv
@@ -15,7 +16,6 @@ deploy.sh
 db/*/*/*.tex
 
 
-Charter.md.asc
 
 
 
