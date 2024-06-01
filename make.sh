@@ -128,7 +128,10 @@ case "$1" in
         pdfpath1=".workdir/$docname.pdf"
         export PDFPATH_DEST="_dist/altdocs/$OFFICE/$ORGDIR.$docname.pdf"
         rsync -a "$ORGDIR/" ".workdir/"
-        bash "$docprefix/prepare.sh"
+        if ! bash "$docprefix/prepare.sh"; then
+            echo "[WARNING] Cannot proceed with ./make.sh $* "
+            exit 1
+        fi
         cp -a "$docprefix/$docname.tex" "$texpath"
         "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=errorstopmode "$texpath"
         dirname "$PDFPATH_DEST" | xargs mkdir -p
