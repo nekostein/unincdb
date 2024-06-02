@@ -140,6 +140,7 @@ case "$1" in
         realpath "$PDFPATH_DEST" | xargs du -h
         ;;
     altall)
+        ./make.sh gc altdoc
         find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 | cut -d/ -f4 | while read -r docname; do
             while read -r orgdir; do
                 ./make.sh alt "$docname" "$orgdir"
@@ -151,6 +152,6 @@ case "$1" in
         echo "[INFO] Non-path targets:  all alt altall dbindex gc"
         ;;
     *)
-        [[ -e "$1"UNINC.toml ]] && ./make.sh "$1"UNINC.toml
+        [[ -e "$1"/UNINC.toml ]] && ./make.sh "$1"/UNINC.toml
         ;;
 esac

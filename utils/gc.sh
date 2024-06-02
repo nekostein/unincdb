@@ -13,4 +13,8 @@ case $1 in
         ;;
     db)
         find db -name '*.texpart' -type f -delete
+        ;;
+    altdoc)
+        find "_dist/altdocs/$OFFICE" -name '*.pdf' -type f -delete
+        ;;
 esac
