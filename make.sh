@@ -121,23 +121,14 @@ case "$1" in
     alt)
         # ./make alt example db/1970/unincdb-tutorial
         ./make.sh gc workdir
-        docname="$2"
-        export ORGDIR="$(realpath --relative-to="$PWD" "$3")"
-        docprefix="authorities/$OFFICE/altdoc/$docname"
-        texpath=".workdir/$docname.tex"
-        pdfpath1=".workdir/$docname.pdf"
-        export PDFPATH_DEST="_dist/altdocs/$OFFICE/$ORGDIR.$docname.pdf"
-        rsync -a "$ORGDIR/" ".workdir/"
-        if ! bash "$docprefix/prepare.sh"; then
-            echo "[WARNING] Cannot proceed with ./make.sh $* "
-            echo "          Because the 'prepare.sh' script asked to skip it."
-            exit 1
+        export docname="$2"
+        if [[ -n "$3" ]]; then
+            bash utils/makealtdocs.sh "$3"
+        else
+            while read -r line; do
+                bash utils/makealtdocs.sh "$line"
+            done < "authorities/$OFFICE/witnesslist.txt"
         fi
-        cp -a "$docprefix/$docname.tex" "$texpath"
-        "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=errorstopmode "$texpath"
-        dirname "$PDFPATH_DEST" | xargs mkdir -p
-        cp -a "$pdfpath1" "$PDFPATH_DEST"
-        realpath "$PDFPATH_DEST" | xargs du -h
         ;;
     altall)
         ./make.sh gc altdoc
