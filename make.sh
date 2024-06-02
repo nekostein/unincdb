@@ -92,9 +92,8 @@ case "$1" in
         # example: _dist/www/PearInc/1970/myclub.pdf
         ### Generate a PNG for the first page
         base="$(basename "$1" | cut -d. -f1)"
-        [[ -z "$DPI" ]] && DPI=150
         cd "$(dirname "$1")" || exit 1
-        pdftoppm -png -r "$DPI" -f 1 -l 1 "$base".pdf "$base"
+        pdftoppm -png -r "$PDF_DPI" -f 1 -l 1 "$base".pdf "$base"
         pngfn="$(find . -name "${base}*.png" | head -n1)"
         mv "$pngfn" "$base.png"
         realpath "$base".png | xargs du -h
