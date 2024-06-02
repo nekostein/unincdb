@@ -21,7 +21,7 @@ function hash_compare() {
     dir="$1"
     cached_hash="$(cat $dir/Charter.md.hash)"
     if ! grep -qs "$cached_hash" "$dir/UNINC.toml"; then
-        echo "[ERROR] $dir/UNINC.toml has is incorrect! See $dir/Charter.md.hash"
+        echo "[ERROR] $dir/UNINC.toml hash is incorrect! See $dir/Charter.md.hash"
         cat "$dir/Charter.md.hash"
         [[ "$IGNOREHASHMISMATCH" != y ]] && exit 2
     fi
