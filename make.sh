@@ -136,6 +136,7 @@ case "$1" in
                 ./make.sh alt "$docname" "$orgdir"
             done < "authorities/$OFFICE/witnesslist.txt"
         done
+        ./make.sh gc workdir
         ;;
     '')
         echo "[INFO] You should specify a build target (a relative path)."

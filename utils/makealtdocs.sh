@@ -3,6 +3,7 @@
 export ORGDIR="$(realpath --relative-to="$PWD" "$1")"
 docprefix="authorities/$OFFICE/altdoc/$docname"
 texpath=".workdir/$docname.tex"
+typstpath=".workdir/$docname.typ"
 pdfpath1=".workdir/$docname.pdf"
 export PDFPATH_DEST="_dist/altdocs/$OFFICE/$ORGDIR.$docname.pdf"
 rsync -a "$ORGDIR/" ".workdir/"
@@ -11,8 +12,19 @@ if ! bash "$docprefix/prepare.sh"; then
     echo "          Because the 'prepare.sh' script asked to skip it."
     exit 1
 fi
-cp -a "$docprefix/$docname.tex" "$texpath"
-"$LATEXBUILDCMD" -output-directory=".workdir" -interaction=errorstopmode "$texpath"
+
+echo "[INFO] Working on:  $docname ~ $ORGDIR"
+
+if [[ -e "$docprefix/$docname.tex" ]]; then
+    ### Use LaTeX
+    cp -a "$docprefix/$docname.tex" "$texpath"
+    "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=batchmode "$texpath"
+else
+    ### Use Typst (experimental support)
+    cp -a "$docprefix/$docname.typ" "$typstpath"
+    typst c --input ORGDIR="$ORGDIR" "$typstpath"
+fi
+
 dirname "$PDFPATH_DEST" | xargs mkdir -p
 cp -a "$pdfpath1" "$PDFPATH_DEST"
 realpath "$PDFPATH_DEST" | xargs du -h
