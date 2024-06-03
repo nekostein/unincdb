@@ -5,7 +5,7 @@
 
 
 
-toml=".workdir/UNINC.toml"
+
 
 (
     echo '\par Business Name:'

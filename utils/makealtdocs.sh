@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export toml=".workdir/UNINC.toml"
 export ORGDIR="$(realpath --relative-to="$PWD" "$1")"
 docprefix="authorities/$OFFICE/altdoc/$docname"
 texpath=".workdir/$docname.tex"
