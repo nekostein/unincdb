@@ -23,7 +23,9 @@ echo "[INFO] Working on:  $docname ~ $ORGDIR"
 if [[ -e "$docprefix/$docname.tex" ]]; then
     ### Use LaTeX
     cp -a "$docprefix/$docname.tex" "$texpath"
-    "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=batchmode "$texpath"
+    mode=batchmode
+    [[ "$DEBUG" == y ]] && mode=errorstopmode
+    "$LATEXBUILDCMD" -output-directory=".workdir" -interaction=$mode "$texpath"
 else
     ### Use Typst (experimental support)
     cp -a "$docprefix/$docname.typ" "$typstpath"
