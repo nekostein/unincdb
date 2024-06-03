@@ -118,7 +118,7 @@ case "$1" in
         done < "authorities/$OFFICE/witnesslist.txt"
         ;;
     alt)
-        # ./make alt example db/1970/unincdb-tutorial
+        ### Example: ./make alt example db/1970/unincdb-tutorial
         ./make.sh gc workdir
         export docname="$2"
         if [[ -n "$3" ]]; then
@@ -131,7 +131,7 @@ case "$1" in
         ;;
     altall)
         ./make.sh gc altdoc
-        find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 | cut -d/ -f4 | while read -r docname; do
+        find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 -type d | cut -d/ -f4 | while read -r docname; do
             while read -r orgdir; do
                 ./make.sh alt "$docname" "$orgdir"
             done < "authorities/$OFFICE/witnesslist.txt"
