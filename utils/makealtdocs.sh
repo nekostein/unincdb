@@ -8,11 +8,7 @@ typstpath=".workdir/$docname.typ"
 pdfpath1=".workdir/$docname.pdf"
 export PDFPATH_DEST="_dist/altdocs/$OFFICE/$ORGDIR.$docname.pdf"
 rsync -a "$ORGDIR/" ".workdir/"
-if ! bash "authorities/$OFFICE/prealtdoc.sh"; then
-    echo "[WARNING] Cannot proceed with ./make.sh $* "
-    echo "          Because the 'authorities/$OFFICE/prealtdoc.sh' script asked to skip it."
-    exit 1
-fi
+bash "authorities/$OFFICE/prealtdoc.sh"
 if ! bash "$docprefix/prepare.sh"; then
     echo "[WARNING] Cannot proceed with ./make.sh $* "
     echo "          Because the 'prepare.sh' script asked to skip it."

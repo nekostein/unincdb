@@ -13,6 +13,7 @@ case $1 in
         ;;
     db)
         find db -name '*.texpart' -type f -delete
+        find db -name 'witness-*.*' -type f -delete
         ;;
     altdoc)
         find "_dist/altdocs/$OFFICE" -name '*.pdf' -type f -delete
