@@ -108,7 +108,9 @@ case "$1" in
             exec ./deploy.sh
         else
             echo "[ERROR] Script file 'deploy.sh' is not found."
-            wrangler pages deploy _dist/www/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
+            if [[ "$PWD" == "$HOME/EWS/nekostein/unincdb" ]]; then
+                wrangler pages deploy _dist/www/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
+            fi
         fi
         ;;
     all)
