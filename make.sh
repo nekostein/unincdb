@@ -109,6 +109,7 @@ case "$1" in
         else
             echo "[ERROR] Script file 'deploy.sh' is not found."
             if [[ "$PWD" == "$HOME/EWS/nekostein/unincdb" ]]; then
+                ### Avoid accidentally pushing from a special fork!
                 wrangler pages deploy _dist/www/Nekostein --project-name="unincdb" --commit-dirty=true --branch=main # The default deploy command
             fi
         fi

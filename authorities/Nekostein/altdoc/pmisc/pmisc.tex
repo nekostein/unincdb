@@ -1,0 +1,129 @@
+% This is a series of documents that the President may sign
+% to express their intention of representing the unincorporated organization.
+
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[textwidth=36em,vmargin=24mm]{geometry}
+\usepackage{calc,fontspec,xcolor,paralist,enumitem,tabu,booktabs,datetime2,xeCJK}
+
+\setmainfont{TeX Gyre Termes}
+\setromanfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\linespread{1.12}
+
+
+
+
+\newcommand{\newdochere}[1]{
+    \setcounter{page}{1}
+    \setcounter{section}{0}
+    \begin{center}%
+        \Large\rmfamily\mdseries\strut#1
+    \end{center}\par
+}
+\newcommand{\stdorginfo}[0]{
+    \parbox{\linewidth}{
+        \tabcolsep=0pt
+        \footnotesize
+        \sffamily
+        \begin{tabu}{lX}
+            \toprule
+            \bfseries Business Name & \uninctomldataATfullname \\
+            \bfseries Date of Creation~~~~~ & \uninctomldataATdatecreation \\
+            \bfseries Business Type & \uninctomldataATtype \\
+            \bfseries President & \uninctomldataATpresident \\
+            \bottomrule
+        \end{tabu}
+    }
+}
+\newcommand{\stdsignaturearea}[0]{
+    \parbox{\linewidth}{
+        \tabcolsep=0pt
+        \begin{tabu}{XXX}
+            Signature: & & Date:\\
+            \hline
+        \end{tabu}
+    }
+}
+
+\input{.workdir/tomldata2tex.texpart}
+
+
+
+\begin{document}
+\newdochere{\MakeUppercase{DEED POLL\\On Presidential Inauguration}}
+\thispagestyle{empty}
+
+\stdorginfo
+
+\strut I,
+\textbf{\strut\uninctomldataATpresident},
+as the President of unincorporated organization
+
+\textbf{\strut\uninctomldataATfullname}
+
+hereby make a solemn declaration of FOUR clauses:
+
+\begin{enumerate}
+    \item I shall exercise Presidential rights in the unincorporated organization owing fiduciary duty to the Charter
+        identifiable with the given 160-bit SHA-1 hash:\\
+        \uninctomldataATcharterhash.
+    \item In the event that an organizational resolution, requiring the inauguration of a new President,
+        is approved in accordance with the Charter, I shall transfer all Presidential rights,
+        as well as any applicable documentation, to the new President.
+    \item Any asset that I control on behalf of the organization shall be passed to the new President
+        in the event of my resigning, retirement, or death.
+    \item In the event that our Charter is being amended, or significant manifest information
+        (e.g. President, Secretary, Addresses) is being changed,
+        I shall notify the following witness authorities, if they remain operational and free of charge,
+        to ensure best possible availability of information.
+        \begin{compactitem}
+            \uninctomldataATwitnessITEM
+        \end{compactitem}
+\end{enumerate}
+
+This is a computer-generated document that shall become into force
+if and only if its printed copy is signed off.
+
+\vfill
+\stdsignaturearea
+
+
+
+
+
+
+
+
+\clearpage
+\newdochere{\MakeUppercase{Official Declaration\\On Using Stamps}}
+\thispagestyle{empty}
+
+\stdorginfo
+    
+We at \uninctomldataATfullname~hereby declare that the following
+(quantity: \underline{\hspace{5em}})
+stamps belong to this unincorporated organization.
+These stamps may be used to indicate approval in civil and commerce terms on behalf of our organization.
+All previous similar declarations are invalid since today.
+
+\begin{tabu}{|X|X|X|}
+    \hline
+    Stamp 1 & Stamp 2 & Stamp 3\\ & &\vspace{32mm} \\
+    \hline
+    Stamp 4 & Stamp 5 & Stamp 6\\ & &\vspace{32mm} \\
+    \hline
+    Stamp 7 & Stamp 8 & Stamp 9\\ & &\vspace{32mm} \\
+    \hline
+\end{tabu}
+
+
+
+\vfill
+\stdsignaturearea
+
+
+\end{document}
