@@ -64,12 +64,14 @@ case "$1" in
     */Appendix.md)
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
         ;;
-    db*/*.tex)
+    db/*.tex | db-private/*.tex)
         ### Note: Should support alternative prefix 'db-private'!
         rawdir="$(dirname "$1")"
         rsync -av --delete --mkpath "$rawdir"/ .workdir/
-        "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=errorstopmode .workdir/"$(basename "$1")"
-        ./make.sh gc db
+        wdtexpath=.workdir/"$(basename "$1")"
+        "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=errorstopmode "$wdtexpath"
+        pdf_back_path="$(sed 's|.tex$|.pdf|' <<< "$1")"
+        du -h "$pdf_back_path"
         ;;
     dbindex)
         texpath="authorities/$OFFICE/dbindex.tex"
@@ -81,7 +83,7 @@ case "$1" in
         cp -a "$pdffn" "$dest"
         realpath "$dest" | xargs du -h
         ;;
-    db*/*/witness-*.pdf)
+    db/*/witness-*.pdf | db-private/*/witness-*.pdf)
         destfn="$(bash utils/helper-transformpdfpath.sh "$1")"
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
@@ -94,8 +96,8 @@ case "$1" in
         base="$(basename "$1" | cut -d. -f1)"
         cd "$(dirname "$1")" || exit 1
         pdftoppm -png -r "$PDF_DPI" -f 1 -l 1 "$base".pdf "$base"
-        pngfn="$(find . -name "${base}*.png" | head -n1)"
-        mv "$pngfn" "$base.png"
+        pngfn="$(find . -name "${base}*.png" | sort | head -n1)"
+        mv -v "$pngfn" "$base.png"
         realpath "$base".png | xargs du -h
         ;;
     gc)
