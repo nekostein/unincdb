@@ -12,3 +12,6 @@ addresses = [
 witness = [
     "https://unincdb.nekostein.com/1970/unincdb-tutorial.pdf"
 ]
+
+[com.nekostein]
+url_stamps = "https://example.com/wiki/article/stamps.html"

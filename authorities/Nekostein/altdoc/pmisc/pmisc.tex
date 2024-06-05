@@ -1,18 +1,23 @@
+% Copyright 2024 Nekostein, an unincorporated game development team consisting of Neruthes and MIAO_OAIM.
+% Published with CC BY-NC 4.0 license.
+% Permission is granted that you may use this LaTeX template to generate documents for your own unincorporated organization.
+
+
 % This is a series of documents that the President may sign
 % to express their intention of representing the unincorporated organization.
 
 
-\documentclass[11pt,a4paper]{article}
-\usepackage[textwidth=36em,vmargin=24mm]{geometry}
-\usepackage{calc,fontspec,xcolor,paralist,enumitem,tabu,booktabs,datetime2,xeCJK}
+\documentclass[10pt,a4paper]{article}
+\usepackage[textwidth=41em,vmargin=24mm]{geometry}
+\usepackage{calc,fontspec,xcolor,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK}
 
-\setmainfont{TeX Gyre Termes}
-\setromanfont{TeX Gyre Termes}
+\setmainfont{TeX Gyre Schola}
+\setromanfont{TeX Gyre Schola}
 \setsansfont{TeX Gyre Heros}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\linespread{1.12}
+\linespread{1.2}
 
 
 
@@ -21,56 +26,84 @@
     \setcounter{page}{1}
     \setcounter{section}{0}
     \begin{center}%
-        \Large\rmfamily\mdseries\strut#1
+        \large\rmfamily\mdseries\strut#1
     \end{center}\par
 }
 \newcommand{\stdorginfo}[0]{
     \parbox{\linewidth}{
         \tabcolsep=0pt
-        \footnotesize
-        \sffamily
+        \small
         \begin{tabu}{lX}
             \toprule
-            \bfseries Business Name & \uninctomldataATfullname \\
-            \bfseries Date of Creation~~~~~ & \uninctomldataATdatecreation \\
-            \bfseries Business Type & \uninctomldataATtype \\
-            \bfseries President & \uninctomldataATpresident \\
+            \mdseries Business Name~~~~~~ & \fulltomldataATfullname \\
+            \mdseries Date of Creation & \fulltomldataATdatecreation \\
+            \mdseries Business Type & \fulltomldataATtype \\
+            \mdseries President & \fulltomldataATpresident \\
+            \mdseries Charter & \uninctomldataATwitnessFIRST \\
+            \mdseries Charter Hash & \fulltomldataATcharterhash \\
             \bottomrule
         \end{tabu}
-    }
+    }\par\vskip 10pt
 }
-\newcommand{\stdsignaturearea}[0]{
+\newcommand{\stdsignaturearea}[1]{
+    #1\par
     \parbox{\linewidth}{
         \tabcolsep=0pt
+        \footnotesize
         \begin{tabu}{XXX}
-            Signature: & & Date:\\
+            \strut Signature/Stamp/Seal & & \strut Date\\
             \hline
         \end{tabu}
     }
 }
 
+\input{.workdir/fulltomldata.texpart}
 \input{.workdir/tomldata2tex.texpart}
 
 
 
 \begin{document}
-\newdochere{\MakeUppercase{DEED POLL\\On Presidential Inauguration}}
+\newdochere{INTRODUCTION\\HOW TO USE THIS DOCUMENT}
+\thispagestyle{empty}
+
+Now you are seeing the PMisc document, a PDF built via \LaTeX.
+It is generated from ``UNINC.toml'' and ``pmisc.tex'' in the UNINCDB repository.
+
+You might have noticed that using this tool does not necessarily require obtaining a Letter of Witness
+for your Charter from Nekostein or any other witness authority.
+But for technical robustness, requesting one will be a good idea to keep your local data consistent.
+
+All you need is to make a local git clone and fill up data in the ``/db-private/1970/myorg'' directory.
+The usage is straightforward and the scripts are easy to understand.
+
+
+Copyright \copyright~2024 Nekostein, an unincorporated game development team consisting of Neruthes and MIAO\_OAIM.
+Published with CC BY-NC 4.0 license.
+Permission is granted that you may use this \LaTeX{} template to generate documents for your own unincorporated organization.
+
+
+
+
+
+
+\clearpage
+\newdochere{\MakeUppercase{DEED POLL\\For Assuming Presidential Duty}}
 \thispagestyle{empty}
 
 \stdorginfo
 
 \strut I,
-\textbf{\strut\uninctomldataATpresident},
+\underline{\fulltomldataATpresident},
 as the President of unincorporated organization
 
-\textbf{\strut\uninctomldataATfullname}
+\underline{\fulltomldataATfullname}
 
 hereby make a solemn declaration of FOUR clauses:
 
 \begin{enumerate}
     \item I shall exercise Presidential rights in the unincorporated organization owing fiduciary duty to the Charter
         identifiable with the given 160-bit SHA-1 hash:\\
-        \uninctomldataATcharterhash.
+        \underline{\fulltomldataATcharterhash}.
     \item In the event that an organizational resolution, requiring the inauguration of a new President,
         is approved in accordance with the Charter, I shall transfer all Presidential rights,
         as well as any applicable documentation, to the new President.
@@ -78,18 +111,19 @@ hereby make a solemn declaration of FOUR clauses:
         in the event of my resigning, retirement, or death.
     \item In the event that our Charter is being amended, or significant manifest information
         (e.g. President, Secretary, Addresses) is being changed,
-        I shall notify the following witness authorities, if they remain operational and free of charge,
+        I shall publish an announcement online, and shall notify the following witness authorities,
+        as long as they remain operational and free of charge,
         to ensure best possible availability of information.
         \begin{compactitem}
             \uninctomldataATwitnessITEM
         \end{compactitem}
 \end{enumerate}
 
-This is a computer-generated document that shall become into force
+This is a computer-generated document that shall come into force
 if and only if its printed copy is signed off.
 
 \vfill
-\stdsignaturearea
+\stdsignaturearea{}
 
 
 
@@ -99,16 +133,22 @@ if and only if its printed copy is signed off.
 
 
 \clearpage
-\newdochere{\MakeUppercase{Official Declaration\\On Using Stamps}}
+\newdochere{\MakeUppercase{DEED POLL\\For Adopting Official Stamps/Seals}}
 \thispagestyle{empty}
 
 \stdorginfo
-    
-We at \uninctomldataATfullname~hereby declare that the following
-(quantity: \underline{\hspace{5em}})
-stamps belong to this unincorporated organization.
+
+\strut We at \underline{\fulltomldataATfullname} hereby declare that the following
+(quantity: \underline{\hspace{10em}})
+stamps/seals belong to this unincorporated organization.
 These stamps may be used to indicate approval in civil and commerce terms on behalf of our organization.
 All previous similar declarations are invalid since today.
+
+We assume a duty to publish a scanned copy of this document at the following web address
+as a measure to notify any party who may concern.
+
+\strut\fulltomldataATcomDOTnekosteinDOTurlstamps
+\hrule
 
 \begin{tabu}{|X|X|X|}
     \hline
@@ -123,7 +163,29 @@ All previous similar declarations are invalid since today.
 
 
 \vfill
-\stdsignaturearea
+\stdsignaturearea{By President:}
 
 
+
+
+
+
+
+\clearpage
+\newdochere{\MakeUppercase{CERTIFICATE\\Of Representative Status}}
+\thispagestyle{empty}
+
+\stdorginfo
+
+\strut We at \underline{\fulltomldataATfullname} hereby certify
+that the person
+
+\underline{\strut\hspace{25em}}
+
+is a representative of our organization.
+
+Valid through (date: \underline{\hspace{20em}}).
+
+\vfill
+\stdsignaturearea{By President:}
 \end{document}
