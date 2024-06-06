@@ -12,3 +12,6 @@ while read -r tomlkey; do
     fi
 done < .workdir/tomlkeys.txt > .workdir/fulltomldata.texpart
 
+
+
+printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com/%s}\n' "$(cut -d/ -f2- <<< "$ORGDIR")" >> .workdir/fulltomldata.texpart

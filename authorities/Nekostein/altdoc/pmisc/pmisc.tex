@@ -7,17 +7,19 @@
 % to express their intention of representing the unincorporated organization.
 
 
-\documentclass[10pt,a4paper]{article}
-\usepackage[textwidth=41em,vmargin=24mm]{geometry}
-\usepackage{calc,fontspec,xcolor,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK}
+\documentclass[11pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=38em,vmargin=22mm]{geometry}
+\usepackage{calc,fontspec,xcolor,graphicx,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK,hyperref}
 
-\setmainfont{TeX Gyre Schola}
-\setromanfont{TeX Gyre Schola}
+\setmainfont{Latin Modern Roman}
+\setromanfont{Latin Modern Roman}
+% \setmainfont{TeX Gyre Schola}
+% \setromanfont{TeX Gyre Schola}
 \setsansfont{TeX Gyre Heros}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\linespread{1.2}
+\linespread{1.05}
 
 
 
@@ -25,9 +27,15 @@
 \newcommand{\newdochere}[1]{
     \setcounter{page}{1}
     \setcounter{section}{0}
-    \begin{center}%
-        \large\rmfamily\mdseries\strut#1
-    \end{center}\par
+    \scalebox{1}[1.13]{%
+        \parbox{\textwidth}{%
+            \begin{center}%
+                \normalsize\rmfamily\mdseries\strut%
+                #1%
+            \end{center}%
+        }%
+    }%
+    \par
 }
 \newcommand{\stdorginfo}[0]{
     \parbox{\linewidth}{
@@ -71,11 +79,16 @@ It is generated from ``UNINC.toml'' and ``pmisc.tex'' in the UNINCDB repository.
 
 You might have noticed that using this tool does not necessarily require obtaining a Letter of Witness
 for your Charter from Nekostein or any other witness authority.
-But for technical robustness, requesting one will be a good idea to keep your local data consistent.
-
 All you need is to make a local git clone and fill up data in the ``/db-private/1970/myorg'' directory.
 The usage is straightforward and the scripts are easy to understand.
 
+But for technical robustness, requesting a Letter of Witness will be a good idea to keep your local data consistent.
+If the Charter is witnessed by the Nekostein-hosted UNINCDB,
+this PDF should be available at the following URL:
+
+\begin{center}
+    \href{\unincdbaltdocprefix.pmisc.pdf}{\unincdbaltdocprefix.pmisc.pdf}
+\end{center}
 
 Copyright \copyright~2024 Nekostein, an unincorporated game development team consisting of Neruthes and MIAO\_OAIM.
 Published with CC BY-NC 4.0 license.
@@ -133,13 +146,12 @@ if and only if its printed copy is signed off.
 
 
 \clearpage
-\newdochere{\MakeUppercase{DEED POLL\\For Adopting Official Stamps/Seals}}
+\newdochere{\MakeUppercase{\fulltomldataATfullname\\Statement on Adopting Official Stamps/Seals}}
 \thispagestyle{empty}
 
 \stdorginfo
 
-\strut We at \underline{\fulltomldataATfullname} hereby declare that the following
-(quantity: \underline{\hspace{10em}})
+This is to certify that the following (quantity: \underline{\hspace{10em}})
 stamps/seals belong to this unincorporated organization.
 These stamps may be used to indicate approval in civil and commerce terms on behalf of our organization.
 All previous similar declarations are invalid since today.
@@ -147,16 +159,16 @@ All previous similar declarations are invalid since today.
 We assume a duty to publish a scanned copy of this document at the following web address
 as a measure to notify any party who may concern.
 
-\strut\fulltomldataATcomDOTnekosteinDOTurlstamps
-\hrule
+\providecommand{\fulltomldataATcomDOTnekosteinDOTurlstamps}[0]{}
+\strut URL:~~\fulltomldataATcomDOTnekosteinDOTurlstamps
 
 \begin{tabu}{|X|X|X|}
     \hline
-    Stamp 1 & Stamp 2 & Stamp 3\\ & &\vspace{32mm} \\
+    Stamp Sample 1 & Stamp Sample 2 & Stamp Sample 3\\ & &\vspace{32mm} \\
     \hline
-    Stamp 4 & Stamp 5 & Stamp 6\\ & &\vspace{32mm} \\
+    Stamp Sample 4 & Stamp Sample 5 & Stamp Sample 6\\ & &\vspace{32mm} \\
     \hline
-    Stamp 7 & Stamp 8 & Stamp 9\\ & &\vspace{32mm} \\
+    Stamp Sample 7 & Stamp Sample 8 & Stamp Sample 9\\ & &\vspace{32mm} \\
     \hline
 \end{tabu}
 
@@ -172,15 +184,14 @@ as a measure to notify any party who may concern.
 
 
 \clearpage
-\newdochere{\MakeUppercase{CERTIFICATE\\Of Representative Status}}
+\newdochere{\MakeUppercase{\fulltomldataATfullname\\Certificate of Representative Status}}
 \thispagestyle{empty}
 
 \stdorginfo
 
-\strut We at \underline{\fulltomldataATfullname} hereby certify
-that the person
+\strut This is to certify that the person
 
-\underline{\strut\hspace{25em}}
+\underline{\strut\hspace{0.8\linewidth}}
 
 is a representative of our organization.
 

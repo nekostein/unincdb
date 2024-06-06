@@ -27,6 +27,10 @@ function hash_compare() {
     fi
 }
 
+function getdblistcol() {
+    cut -d';' -f"$1" < "authorities/$OFFICE/witnesslist.txt"
+}
+
 
 
 
@@ -106,8 +110,9 @@ case "$1" in
         bash utils/gc.sh "$2"
         ;;
     deploy*)
+        [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
         if [[ -e deploy.sh ]]; then
-            exec ./deploy.sh
+            ./deploy.sh
         else
             echo "[ERROR] Script file 'deploy.sh' is not found."
             if [[ "$PWD" == "$HOME/EWS/nekostein/unincdb" ]]; then
@@ -118,9 +123,9 @@ case "$1" in
         ;;
     all)
         [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc png
-        while read -r line; do
+        getdblistcol 1 | while read -r line; do
             try_make "$line"/UNINC.toml
-        done < "authorities/$OFFICE/witnesslist.txt"
+        done
         ;;
     alt)
         ### Example: ./make alt example db/1970/unincdb-tutorial
@@ -129,17 +134,18 @@ case "$1" in
         if [[ -n "$3" ]]; then
             bash utils/makealtdocs.sh "$3"
         else
-            while read -r line; do
+            getdblistcol 1 | while read -r line; do
                 bash utils/makealtdocs.sh "$line"
-            done < "authorities/$OFFICE/witnesslist.txt"
+            done
         fi
+        [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
         ;;
     altall)
         ./make.sh gc altdoc
         find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 -type d | cut -d/ -f4 | while read -r docname; do
-            while read -r orgdir; do
+            getdblistcol 1 | while read -r orgdir; do
                 ./make.sh alt "$docname" "$orgdir"
-            done < "authorities/$OFFICE/witnesslist.txt"
+            done
         done
         ./make.sh gc workdir
         ;;
