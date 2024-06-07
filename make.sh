@@ -28,7 +28,10 @@ function hash_compare() {
 }
 
 function getdblistcol() {
-    cut -d';' -f"$1" < "authorities/$OFFICE/witnesslist.txt"
+    (
+        cat "authorities/$OFFICE/witnesslist.txt"
+        [[ -e db-private/witnesslist.txt ]] && cat db-private/witnesslist.txt
+    ) | cut -d';' -f"$1"
 }
 
 function altdocsrsync() {
@@ -70,7 +73,13 @@ case "$1" in
         dirname_dest="$(dirname "$destfn_pref.Charter.md")"
         mkdir -p "$dirname_dest"
         cp -a "$1" "$destfn_pref.Charter.md"
-        pandoc --verbose -i "$1" -f markdown+smart -s -t html --metadata title="CHARTER | $(tomlq -r .fullname "${1/Charter.md/UNINC.toml}")" -o "$destfn_pref.Charter.html"
+        html_header="authorities/$OFFICE/deco/Charter_header.html"
+        touch "$html_header"
+        pandoc --verbose -i "$1" --include-before-body="$html_header" \
+            -f markdown+smart -s --number-sections -t html \
+            --metadata title="$TITLE_CHARTER_BEFORE$(tomlq -r .fullname "${1/Charter.md/UNINC.toml}")$TITLE_CHARTER_AFTER" \
+            -o "$destfn_pref.Charter.html"
+        echo "$destfn_pref.Charter.html"
         ;;
     */Appendix.md)
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
@@ -129,8 +138,8 @@ case "$1" in
         ;;
     all)
         [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc png
-        getdblistcol 1 | while read -r line; do
-            try_make "$line"/UNINC.toml
+        getdblistcol 1 | while read -r orgdir; do
+            [[ -e "$orgdir" ]] && try_make "$orgdir"/UNINC.toml
         done
         ;;
     alt)
@@ -140,8 +149,8 @@ case "$1" in
         if [[ -n "$3" ]]; then
             bash utils/makealtdocs.sh "$3"
         else
-            getdblistcol 1 | while read -r line; do
-                bash utils/makealtdocs.sh "$line"
+            getdblistcol 1 | while read -r orgdir; do
+                bash utils/makealtdocs.sh "$orgdir"
             done
         fi
         
@@ -150,7 +159,7 @@ case "$1" in
         ./make.sh gc altdoc
         find "authorities/$OFFICE/altdoc" -maxdepth 1 -mindepth 1 -type d | cut -d/ -f4 | while read -r docname; do
             getdblistcol 1 | while read -r orgdir; do
-                ./make.sh alt "$docname" "$orgdir"
+                [[ -e "$orgdir" ]] &&  ./make.sh alt "$docname" "$orgdir"
             done
         done
         ./make.sh gc workdir
