@@ -11,6 +11,10 @@
 ### Similar scripts may coexist in parallel as tools of different witness agencies
 
 
+
+source authorities/Nekostein/altdoc-lib/lib.sh
+
+
 tomlpath="$1"
 workdir="$(dirname "$tomlpath")"
 outfn="$1.$OFFICE.1.texpart"
@@ -20,6 +24,14 @@ workdir_alt="$(cut -d/ -f2- <<< "$workdir")"
 printf -- '\href{https://unincdb.nekostein.com/%s.pdf}{https://unincdb.nekostein.com/%s.pdf}' \
     "$workdir_alt" "$workdir_alt" | tr -d '\n' \
     > "$1.Nekostein.2.texpart"
+
+
+
+
+### Obtain Filing ID...
+get_regno "$workdir" "$1.Nekostein.regno.texpart"
+
+
 
 function printfield() {
     keyname="$1"
@@ -33,13 +45,14 @@ function printfield() {
 }
 
 
-charter_md_url="https://unincdb.nekostein.com/$workdir_alt.md"
+charter_md_url="https://unincdb.nekostein.com/id/$regno.Charter.md"
 
 (
     printf '\\renewcommand{\\cachedunincname}[0]'
     printf '{%s}\n' "$(tomlq -r .fullname "$tomlpath")"
     printfield 'Business Name' fullname manifestfieldbig
     # echo '\manifestfield{Date of Issue}{'"$(TZ=UTC date +%Y-%m-%d)"'}'
+    echo '\manifestfieldbig{Filing ID}{'"$regno"'}'
     printfield 'Type' type
     printfield 'Date of Creation' date_creation
     printfield 'Status' status
@@ -74,16 +87,11 @@ echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehref
 
 tomlq -r .witness[] "$tomlpath" | makehreflinks | sed 's/^/\\item /' > "$1.Nekostein.99.texpart"
 
-echo "$charter_md_url" | makehreflinks > "$1.Nekostein.101.texpart"
+printf '%s\n%s\n' "$charter_md_url" "${charter_md_url/.md/.html}" | makehreflinks > "$1.Nekostein.charter-href.texpart"
 
 
-# Make sure that the smaller version exists
-if which timegate; then
-    timegate=timegate
-else
-    timegate=''
-fi
-export src="_dist/libvi/patterns/p02.js.png"
-export dst="_dist/libvi/patterns/p02.js.small.png"
-# command "$timegate" convert "$src" -colors 40 -scale '75%' -quality 80 -background white -alpha remove -alpha off "$dst"
-# du -xhd1 "$dst"
+
+
+
+
+

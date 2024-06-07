@@ -19,7 +19,7 @@
 % ----------------------------------------------------------
 % BEGIN Pandoc compatibility layer
 \providecommand{\tightlist}[0]{%
-\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 }
 \providecommand{\url}[1]{#1}
 % \providecommand{\arraybackslash}[0]{}
@@ -56,22 +56,21 @@
 }
 \newcommand{\cachedunincname}[0]{}
 \newcommand{\manifestfieldbig}[2]{
-    \vskip 1.5em
-    {#1}\par
-    \vspace{3pt}\textbf{\sffamily\normalsize{\strut#2}}
-    \vskip 1.5em
+    {\small\strut#1}\par%
+    \textbf{\sffamily\normalsize{\strut#2}}%
+    \vskip 1em
 }
 \newcommand{\manifestfield}[2]{
-    \parbox[t]{9.5em}{\strut#1}\hfill%
-    \parbox[t]{\linewidth-10em}{\raggedright\mdseries{\strut#2}}\par\vskip 2pt
+    \parbox[t]{9.5em}{\small\strut#1}\hfill%
+    \parbox[t]{\linewidth-10em}{\small\raggedright\mdseries{\strut#2}}\par
 }
 
 
 \makeatletter
-\renewcommand{\verbatim@font}[0]{\ttfamily\small}
+\renewcommand{\verbatim@font}[0]{\ttfamily\footnotesize}
 \makeatother
 
-
+\input{.workdir/UNINC.toml.Nekostein.regno.texpart}
 
 
 
@@ -80,8 +79,9 @@
 \minititle{LETTER OF WITNESS FOR\\UNINCORPORATED ORGANIZATION}
 
 
-The issuing agency hereby certifies that the following unincorporated organization has been filed
-with a Charter identifiable with the given SHA-1 hash.
+This is to certify that the following unincorporated organization has been filed
+with a Charter identifiable with the given hash.
+\vskip 1em
 
 \input{.workdir/UNINC.toml.Nekostein.1.texpart}
 
@@ -91,7 +91,9 @@ with a Charter identifiable with the given SHA-1 hash.
 \small
 \strut Date of issue: \today\\
 \strut Get latest digital copy from the UNINC Database at:\\
-\strut \input{.workdir/UNINC.toml.Nekostein.2.texpart}
+\strut%
+\unincregnohref
+% \input{.workdir/UNINC.toml.Nekostein.2.texpart}
 
 
 
@@ -132,10 +134,12 @@ with a Charter identifiable with the given SHA-1 hash.
 % Extra Statement
 \fakenewdoc
 \minititle{ATTACHMENT 3\\STATUTORY STATEMENT BY NEKOSTEIN}
+% \small
 
 
 \section{Intellectual Properties}
 \begin{enumerate}
+    \tightlist
     \item The letter template of this document is a copyrighted work of typography.
     \item The ``Nekostein'' wordmark and the ``excited cat face'' picture may be unregistered trademarks of Nekostein.
     \item Permission of redistribution is granted to the extent of sharing this digital PDF,
@@ -146,10 +150,11 @@ with a Charter identifiable with the given SHA-1 hash.
 
 \section{Miscellaneous}
 \begin{enumerate}
+    \tightlist
     \item The index of our UNINCDB may be found at:\\
         \href{https://unincdb.nekostein.com/dbindex.pdf}{https://unincdb.nekostein.com/dbindex.pdf}
     \item The Charter of the witnessed unincorporated organization is available at the following URL:\\
-        \input{.workdir/UNINC.toml.Nekostein.101.texpart}
+        \input{.workdir/UNINC.toml.Nekostein.charter-href.texpart}
     \item The unincorporated organization has requested letters of witness from the following witness agencies.
     \begin{itemize}
         \input{.workdir/UNINC.toml.Nekostein.99.texpart}

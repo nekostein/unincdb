@@ -8,7 +8,7 @@ texpath=".workdir/$docname.tex"
 typstpath=".workdir/$docname.typ"
 pdfpath1=".workdir/$docname.pdf"
 
-export PDFPATH_DEST="_dist/altdocs/$OFFICE/$(cut -d/ -f2- <<< "$ORGDIR").$docname.pdf"
+export PDFPATH_DEST="$(bash utils/helper-transformpdfpath.sh "$ORGDIR/witness-$OFFICE.pdf" | sed 's|www|altdocs|' | sed 's|.pdf$||').$docname.pdf"
 
 rsync -a "$ORGDIR/" ".workdir/"
 

@@ -69,7 +69,7 @@ addresses = [
     "https://github.com/nekostein/unincdb",
 ]
 witness = [
-    "https://unincdb.nekostein.com/1970/unincdb-tutorial.pdf"
+    "https://unincdb.nekostein.com/id/100-0000-0002.pdf"
 ]
 ```
 
@@ -213,9 +213,9 @@ In short, the building workflow consists of several stages:
 
 - Use Pandoc to generate ".texpart" components for "Charter.md" and "Appendix.md".
 - Run the "toml2tex.sh" script to generate ".texpart" components to be used in the LaTeX template.
-- Copy from "authorities/PearInc/witness.tex" to "db/1970/unincdb-tutorial/witness-PearInc.tex".
+- Copy from authorities/PearInc/witness.tex to db/1970/unincdb-tutorial/witness-PearInc.tex.
 - Use XeLaTeX to build the destination file. Note: If you want to use a different LaTeX building command, override using "$LATEXBUILDCMD".
-- Move the PDF artifact to "_dist/www/PearInc/1970/unincdb-tutorial.pdf".
+- Move the PDF artifact to _dist/www/PearInc/1970/unincdb-tutorial.pdf.
 
 Now you can publish the directory "_dist/www/PearInc" as a website so people can see witness letters you made.
 

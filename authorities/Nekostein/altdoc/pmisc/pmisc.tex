@@ -7,22 +7,23 @@
 % to express their intention of representing the unincorporated organization.
 
 
-\documentclass[11pt,a4paper,hidelinks]{article}
-\usepackage[textwidth=38em,vmargin=22mm]{geometry}
+\documentclass[10pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=40em,vmargin=24mm]{geometry}
 \usepackage{calc,fontspec,xcolor,graphicx,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK,hyperref}
 
 \input{.workdir/fulltomldata.texpart}
 \input{.workdir/tomldata2tex.texpart}
 
-\setmainfont{Latin Modern Roman}
-\setromanfont{Latin Modern Roman}
-% \setmainfont{TeX Gyre Schola}
-% \setromanfont{TeX Gyre Schola}
+% \setmainfont{Latin Modern Roman}
+% \setromanfont{Latin Modern Roman}
+\setmainfont{TeX Gyre Schola}
+\setromanfont{TeX Gyre Schola}
 \setsansfont{TeX Gyre Heros}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 \linespread{1.05}
+\frenchspacing
 
 
 
@@ -33,7 +34,7 @@
     \scalebox{1}[1.13]{%
         \parbox{\textwidth}{%
             \begin{center}%
-                \normalsize\rmfamily\mdseries\strut%
+                \large\rmfamily\mdseries\strut%
                 #1%
             \end{center}%
         }%
@@ -78,6 +79,12 @@
 
 Now you are seeing the PMisc document, a PDF built via \LaTeX.
 It is generated from ``UNINC.toml'' and ``pmisc.tex'' in the UNINCDB repository.
+
+In this document, we intend to afford a few pre-made forms
+that an unincorporated organization can print and sign/stamp/seal en masse.
+For example, the Deed Poll for Assuming Presidential Duty can be instrumental
+when convincing a third party that any liability that may possibly emerge
+will at least be handled by the President in person.
 
 You might have noticed that using this tool does not necessarily require obtaining a Letter of Witness
 for your Charter from Nekostein or any other witness authority.

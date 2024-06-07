@@ -8,6 +8,12 @@ while read -r tomlkey; do
     if [[ "$char0" != "{" ]] && [[ "$char0" != "[" ]]; then
         printf '\\providecommand{\\fulltomldataAT%s}[0]{%s}\n' "$tomlkey_flat" "$toml_value"
     fi
-done < .workdir/tomlkeys.txt > .workdir/fulltomldata.texpart
+done < .workdir/tomlkeys.txt
 
-printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com/%s}\n' "$(cut -d/ -f2- <<< "$ORGDIR")" >> .workdir/fulltomldata.texpart
+printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com/%s}\n' "$(cut -d/ -f2- <<< "$ORGDIR")"
+
+itr=1
+for coldef in path regno; do
+    printf '\\providecommand{\\witnesslistkeyname%s}[0]{%s}' "$coldef" "$(grep "$ORGDIR" "authorities/$OFFICE/witnesslist.txt" | cut -d';' -f$itr)"
+    itr=$((itr+1))
+done

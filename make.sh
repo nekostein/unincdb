@@ -13,13 +13,13 @@ mkdir -p _dist .tmp
 
 function try_make() {
     if [[ -e "$1" ]]; then
-        bash "$0" "$1"
+        ./make.sh "$1"
     fi
 }
 
 function hash_compare() {
     dir="$1"
-    cached_hash="$(cat $dir/Charter.md.hash)"
+    cached_hash="$(cat "$dir/Charter.md.hash")"
     if ! grep -qs "$cached_hash" "$dir/UNINC.toml"; then
         echo "[ERROR] $dir/UNINC.toml hash is incorrect! See $dir/Charter.md.hash"
         cat "$dir/Charter.md.hash"
@@ -31,6 +31,9 @@ function getdblistcol() {
     cut -d';' -f"$1" < "authorities/$OFFICE/witnesslist.txt"
 }
 
+function altdocsrsync() {
+    [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
+}
 
 
 
@@ -59,11 +62,15 @@ case "$1" in
         done
         ;;
     */Charter.md)
+        pdf_src="$(dirname "$1")/witness-$OFFICE.pdf"
+        destfn_pref="$(bash utils/helper-transformpdfpath.sh "$pdf_src" | sed 's|.pdf$||')"
         sha1sum "$1" | cut -d' ' -f1 > "$1.hash"
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
-        dirname="_dist/www/$OFFICE/$(cut -d/ -f2 <<< "$1")"
-        mkdir -p "$dirname"
-        cp -a "$1" "$dirname/$(cut -d/ -f3 <<< "$1").md"
+        # dirname_dest="_dist/www/$OFFICE/$(cut -d/ -f2 <<< "$1")"
+        dirname_dest="$(dirname "$destfn_pref.Charter.md")"
+        mkdir -p "$dirname_dest"
+        cp -a "$1" "$destfn_pref.Charter.md"
+        pandoc --verbose -i "$1" -f markdown+smart -s -t html --metadata title="CHARTER | $(tomlq -r .fullname "${1/Charter.md/UNINC.toml}")" -o "$destfn_pref.Charter.html"
         ;;
     */Appendix.md)
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
@@ -71,7 +78,7 @@ case "$1" in
     db/*.tex | db-private/*.tex)
         ### Note: Should support alternative prefix 'db-private'!
         rawdir="$(dirname "$1")"
-        rsync -av --delete --mkpath "$rawdir"/ .workdir/
+        rsync -av --delete "$rawdir"/ .workdir/
         wdtexpath=.workdir/"$(basename "$1")"
         "$LATEXBUILDCMD" -output-directory="$rawdir" -interaction=errorstopmode "$wdtexpath"
         pdf_back_path="$(sed 's|.tex$|.pdf|' <<< "$1")"
@@ -92,7 +99,7 @@ case "$1" in
         mkdir -p "$(dirname "$destfn")"
         cp -a "$1" "$destfn"
         du -xhd1 "$(realpath "$destfn")"
-        [[ "$MAKE_PNG" == y ]] && bash "$0" "$destfn"
+        [[ "$MAKE_PNG" == y ]] && ./make.sh "$destfn"
         ;;
     _dist/*.pdf)
         # example: _dist/www/PearInc/1970/myclub.pdf
@@ -110,7 +117,6 @@ case "$1" in
         bash utils/gc.sh "$2"
         ;;
     deploy*)
-        [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
         if [[ -e deploy.sh ]]; then
             ./deploy.sh
         else
@@ -138,7 +144,7 @@ case "$1" in
                 bash utils/makealtdocs.sh "$line"
             done
         fi
-        [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
+        
         ;;
     altall)
         ./make.sh gc altdoc

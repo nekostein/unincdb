@@ -9,12 +9,16 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Parse Word1 and Word2 from the input file path
-input_path=$1
-Word1="$(dirname "$input_path" | cut -d/ -f2-)"
-Word2="$(basename "$input_path" | sed 's/^witness-//' | sed 's/\.pdf$//')"
+input_path="$1"
+ORGDIR="$(dirname "$input_path")"
 
-# Construct the new file path
-new_path="_dist/www/$Word2/$Word1.pdf"
+new_path="_dist/www/$OFFICE/$ORGDIR.pdf"
 
-echo "$new_path"
+hook_sh="authorities/$OFFICE/hooks/calcrealpdfpath.sh"
+
+if [[ -e "$hook_sh" ]]; then
+    echo "($0) debug: new_path=$new_path" > /dev/stderr
+    bash "$hook_sh" "$ORGDIR"
+else
+    echo "$new_path"
+fi
