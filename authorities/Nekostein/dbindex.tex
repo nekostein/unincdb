@@ -1,12 +1,13 @@
 \documentclass[10pt,a4paper]{report}
 \input{_dist/libvi/latex/ns-report.tex}
+\usepackage{tocloft}
 
 \setlength{\tabcolsep}{0pt}
 \setlength{\tabulinesep}{0pt}
 
 
 
-\newcommand{\thisyear}[1]{\chapter{\strut Year #1}}
+\newcommand{\thisyear}[1]{\chapter{Year #1}}
 \newcommand{\bizinfo}[8]{
     % argv: fullname date_creation type status president secretary charter_hash URL
     \parbox{\linewidth}{
@@ -23,7 +24,7 @@
             \strut CHARTER HASH~~~~~~~~ & \strut #7 \\
         \end{tabu}\par\vskip 5pt
         \sffamily
-        \strut\href{https://unincdb.nekostein.com/#8.pdf}{https://unincdb.nekostein.com/#8.pdf}
+        \strut\href{https://unincdb.nekostein.com/#8}{https://unincdb.nekostein.com/#8}
     }\par\vskip 15pt
 }
 
