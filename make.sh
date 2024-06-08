@@ -133,6 +133,11 @@ case "$1" in
             fi
         fi
         ;;
+    allmd)
+        find db db-private -name Charter.md | while read -r md; do
+            ./make.sh "$md"
+        done
+        ;;
     all)
         [[ "$WWW_ALLOW_PNG" != y ]] && ./make.sh gc png
         getdblistcol 1 | while read -r orgdir; do
