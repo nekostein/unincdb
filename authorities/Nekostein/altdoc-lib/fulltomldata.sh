@@ -10,7 +10,7 @@ while read -r tomlkey; do
     fi
 done < .workdir/tomlkeys.txt
 
-printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com/%s}\n' "$(cut -d/ -f2- <<< "$ORGDIR")"
+printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com/%s}\n' "$(grep "^$ORGDIR;" "authorities/$OFFICE/witnesslist.txt" | cut -d';' -f2)"
 
 itr=1
 for coldef in path regno; do
