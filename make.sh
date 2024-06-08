@@ -28,10 +28,7 @@ function hash_compare() {
 }
 
 function getdblistcol() {
-    (
-        cat "authorities/$OFFICE/witnesslist.txt"
-        [[ -e db-private/witnesslist.txt ]] && cat db-private/witnesslist.txt
-    ) | cut -d';' -f"$1"
+    cut -d';' -f"$1" "authorities/$OFFICE/witnesslist.txt"
 }
 
 function altdocsrsync() {

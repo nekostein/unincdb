@@ -14,6 +14,6 @@ printf '\\providecommand{\\unincdbaltdocprefix}[0]{https://unincdb.nekostein.com
 
 itr=1
 for coldef in path regno; do
-    printf '\\providecommand{\\witnesslistkeyname%s}[0]{%s}' "$coldef" "$(grep "$ORGDIR" "authorities/$OFFICE/witnesslist.txt" | cut -d';' -f$itr)"
+    printf '\\providecommand{\\witnesslistkeyname%s}[0]{%s}' "$coldef" "$(grep "^$ORGDIR;" "authorities/$OFFICE/witnesslist.txt" | cut -d';' -f$itr)"
     itr=$((itr+1))
 done

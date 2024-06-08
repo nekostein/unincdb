@@ -27,20 +27,19 @@ mkdir -p meta
 
 
 LIST="authorities/$OFFICE/witnesslist.txt"
-LIST_PRIVATE="db-private/witnesslist.txt"
 OUT="authorities/$OFFICE/dblist.texpart"
 
 
 
 
 
-years="$(cut -d/ -f2 "$LIST" "$LIST_PRIVATE" | sort -ru)"
+years="$(cut -d/ -f2 "$LIST" | sort -ru)"
 
 echo "years=$years"
 
 for year in $years; do
     printf '\n\n\\thisyear{%s}\n\n' "$year"
-    grep --no-filename "/$year/" "$LIST" "$LIST_PRIVATE" | cut -d';' -f1 | while read -r line; do
+    grep "/$year/" "$LIST" | cut -d';' -f1 | while read -r line; do
         process_toml_path "$line"
     done
 done > "$OUT"
