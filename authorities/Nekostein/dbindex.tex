@@ -1,6 +1,7 @@
 \documentclass[10pt,a4paper]{report}
 \input{_dist/libvi/latex/ns-report.tex}
-\usepackage{tocloft}
+\usepackage{tocloft,titlesec}
+\titleformat{\chapter}[display]{\normalfont\bfseries}{}{0pt}{\Huge}
 
 \setlength{\tabcolsep}{0pt}
 \setlength{\tabulinesep}{0pt}
@@ -9,27 +10,27 @@
 
 \newcommand{\thisyear}[1]{\chapter{Year #1}}
 \newcommand{\bizinfo}[8]{
-    % argv: fullname date_creation type status president secretary charter_hash URL
+    % argv: fullname type status president secretary date_creation charter_hash URL
     \parbox{\linewidth}{
         \rmfamily
         \textbf{\large\sffamily\strut#1}\par\vskip 3pt
         \begin{tabu}{XXX}
-            \strut #2 &
-            \strut #3 &
-            \strut #4 \\
+            \strut TYPE: #2 &
+            \strut STATUS: #3 &
+            \strut FOUNDED ON: #6 \\
         \end{tabu}\par
         \begin{tabu}{XX[2]}
-            \strut PRESIDENT & \strut #5 \\
-            \strut SECRETARY & \strut #6 \\
-            \strut CHARTER HASH~~~~~~~~ & \strut #7 \\
+            \strut PRESIDENT & \strut #4 \\
+            \strut SECRETARY & \strut #5 \\
+            \strut CHARTER HASH & \strut #7 \\
+            \strut URL & \strut \strut\href{https://unincdb.nekostein.com/#8}{https://unincdb.nekostein.com/#8} \\
         \end{tabu}\par\vskip 5pt
-        \sffamily
-        \strut\href{https://unincdb.nekostein.com/#8}{https://unincdb.nekostein.com/#8}
+        % \sffamily
     }\par\vskip 15pt
 }
 
 \begin{document}
-\nsreportcover{\today}{UNINCDB Workgroup}{UNINCDB Index For\\Letters of Witness}{Nekostein HQ}{Database Snapshot}
+\nsreportcover{\today}{UNINCDB Workgroup}{UNINCDB\\Filings Index}{Nekostein HQ}{Database Snapshot}
 
 \tableofcontents
 

@@ -5,24 +5,32 @@ touch .myenv
 source .env
 source .myenv
 
+
+
 function process_toml_path() {
     toml_path="$1/UNINC.toml"
-    # echo toml_path="$toml_path"
-    # URL="$(cut -d/ -f2-3 <<< "$1")"
+    local tomlkeyi18nprefix="."
+    if [[ -n "$TOML_I18N_PREFER" ]]; then
+        if [[ "$(tomlq -r ".i18n.$TOML_I18N_PREFER" "$toml_path")" != null ]]; then
+            tomlkeyi18nprefix=".i18n.$TOML_I18N_PREFER."
+        fi
+    fi
     URL="$(bash utils/helper-transformpdfpath.sh "$1/witness-$OFFICE.pdf" | cut -d/ -f4-)"
     [[ ! -e "$toml_path" ]] && return 0
 
     echo -n '\bizinfo'
 
-    fields="fullname date_creation type status president secretary charter_hash"
-    for ff in $fields; do
-        printf '{%s}' "$(tomlq -r ."$ff" "$toml_path")"
+    fields1="fullname type status president secretary"
+    for ff in $fields1; do
+        printf '{%s}' "$(tomlq -r "${tomlkeyi18nprefix}${ff}" "$toml_path")"
+    done
+    fields2="date_creation charter_hash"
+    for ff in $fields2; do
+        printf '{%s}' "$(tomlq -r ".${ff}" "$toml_path")"
     done
     printf '{%s}\n\n' "$URL"
 }
 
-
-mkdir -p meta
 
 
 
@@ -45,4 +53,3 @@ for year in $years; do
 done > "$OUT"
 
 
-cat "$OUT"
