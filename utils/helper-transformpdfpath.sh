@@ -17,7 +17,7 @@ new_path="_dist/www/$OFFICE/$ORGDIR.pdf"
 hook_sh="authorities/$OFFICE/hooks/calcrealpdfpath.sh"
 
 if [[ -e "$hook_sh" ]]; then
-    echo "($0) debug: new_path=$new_path" > /dev/stderr
+    echo "($0) debug: new_path=$new_path" > /dev/stderr # Uncomment when debugging
     bash "$hook_sh" "$ORGDIR"
 else
     echo "$new_path"
