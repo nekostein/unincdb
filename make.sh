@@ -161,6 +161,12 @@ case "$1" in
         done
         ./make.sh gc workdir
         ;;
+    hash)
+        list="$(find db db-private -name UNINC.toml | sed 's|/UNINC.toml||')"
+        while read -r dir; do
+            hash_compare "$dir" || exit 1
+        done <<< "$list"
+        ;;
     '')
         echo "[INFO] You should specify a build target (a relative path)."
         echo "[INFO] Non-path targets:  all alt altall dbindex gc"
