@@ -150,7 +150,7 @@ case "$1" in
                 bash utils/makealtdocs.sh "$orgdir"
             done
         fi
-        
+        altdocsrsync
         ;;
     altall)
         ./make.sh gc altdoc
