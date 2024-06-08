@@ -45,7 +45,7 @@ function printfield() {
 }
 
 
-charter_md_url="https://unincdb.nekostein.com/id/$regno.Charter.md"
+charter_md_url="https://unincdb.nekostein.com/id/$regno.Charter.html"
 
 (
     printf '\\renewcommand{\\cachedunincname}[0]'
@@ -87,7 +87,7 @@ echo '\manifestfield{Addresses}{'"$(tomlq -r .addresses[] "$tomlpath" | makehref
 
 tomlq -r .witness[] "$tomlpath" | makehreflinks | sed 's/^/\\item /' > "$1.Nekostein.99.texpart"
 
-printf '%s\n%s\n' "$charter_md_url" "${charter_md_url/.md/.html}" | makehreflinks > "$1.Nekostein.charter-href.texpart"
+printf '%s\n%s\n' "$charter_md_url" "${charter_md_url/.html/.md}" | makehreflinks > "$1.Nekostein.charter-href.texpart"
 
 
 

@@ -174,7 +174,7 @@ case "$1" in
         ;;
     '')
         echo "[INFO] You should specify a build target (a relative path)."
-        echo "[INFO] Non-path targets:  all alt altall dbindex gc hash"
+        echo "[INFO] Non-path targets:  all allmd alt altall dbindex gc hash"
         ;;
     *)
         [[ -e "$1"/UNINC.toml ]] && ./make.sh "$1"/UNINC.toml
