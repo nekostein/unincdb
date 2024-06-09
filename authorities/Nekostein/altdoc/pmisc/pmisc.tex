@@ -22,7 +22,7 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\linespread{1.05}
+\linespread{1.09}
 \frenchspacing
 
 
@@ -55,13 +55,13 @@
             \mdseries Charter Hash & \fulltomldataATcharterhash \\
             \bottomrule
         \end{tabu}
-    }\par\vskip 10pt
+    }\par\vskip 14pt
 }
 \newcommand{\stdsignaturearea}[1]{
     #1\par
     \parbox{\linewidth}{
         \tabcolsep=0pt
-        \footnotesize
+        \small
         \begin{tabu}{XXX}
             \strut Signature/Stamp/Seal & & \strut Date\\
             \hline
@@ -99,17 +99,21 @@ this PDF should be available at the following URL.
     \href{\unincdbaltdocprefix.pmisc.pdf}{\unincdbaltdocprefix.pmisc.pdf}
 \end{center}
 
+\vfill
+\begingroup\small
 Copyright \copyright~2024 Nekostein, an unincorporated game development team consisting of Neruthes and MIAO\_OAIM.
 Published with CC BY-NC 4.0 license.
 Permission is granted that you may use this \LaTeX{} template to generate documents for your own unincorporated organization.
 
+This PDF is generated on \today.
+\endgroup
 
 
 
 
 
 \clearpage
-\newdochere{\MakeUppercase{DEED POLL\\For Assuming Presidential Duty}}
+\newdochere{DEED POLL\\FOR ASSUMING PRESIDENTIAL DUTY}
 \thispagestyle{empty}
 
 \stdorginfo
@@ -155,7 +159,7 @@ if and only if its printed copy is signed off.
 
 
 \clearpage
-\newdochere{\MakeUppercase{\fulltomldataATfullname\\Statement on Adopting Official Stamps/Seals}}
+\newdochere{\fulltomldataATfullname\\\MakeUppercase{Statement on Adopting Official Stamps/Seals}}
 \thispagestyle{empty}
 
 \stdorginfo
@@ -181,11 +185,10 @@ as a measure to notify any party who may concern.
     \hline
 \end{tabu}
 
-
-
 \vfill
-\stdsignaturearea{By President:}
-
+\stdsignaturearea{By President:}\par
+Witness / Endorsement / Notary:
+\vfill
 
 
 
@@ -193,7 +196,7 @@ as a measure to notify any party who may concern.
 
 
 \clearpage
-\newdochere{\MakeUppercase{\fulltomldataATfullname\\Certificate of Representative Status}}
+\newdochere{\fulltomldataATfullname\\\MakeUppercase{Certificate of Representative Status}}
 \thispagestyle{empty}
 
 \stdorginfo
