@@ -9,23 +9,24 @@
 
 (
     echo '\par Business Name:'
-    tomlq -r .fullname $toml
-    echo '\par President:'
-    tomlq -r .president $toml
-    echo '\par Secretary:'
-    tomlq -r .secretary $toml
+    tomlq -r .fullname "$toml"
+    echo '\par President:~~~~'
+    tomlq -r .president "$toml"
+    echo '\par Secretary:~~~~'
+    tomlq -r .secretary "$toml"
 ) > .workdir/example.data.texpart
 
 
 (
-    echo '\begin{verbatim}'
+    # echo '\begin{verbatim}'
     echo ./make.sh alt example "$ORGDIR"
-    echo '\end{verbatim}'
+    # echo '\end{verbatim}'
 ) > .workdir/example.cmd.texpart
 
 (
-    echo '\begin{verbatim}'
+    # echo '\begin{verbatim}'
     # sed 's/_/\\_/g' <<< "$PDFPATH_DEST"
-    echo "$PDFPATH_DEST"
-    echo '\end{verbatim}'
+    # echo "$PDFPATH_DEST"
+    echo "https://unincdb.nekostein.com/$(cut -d/ -f4- <<< "$PDFPATH_DEST")"
+    # echo '\end{verbatim}'
 ) > .workdir/example.pdfpath.texpart

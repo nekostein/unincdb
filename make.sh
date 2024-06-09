@@ -98,6 +98,7 @@ case "$1" in
         pdffn="$(sed 's/.tex$/.pdf/' <<< "$texpath")"
         dest="_dist/www/$OFFICE/dbindex.pdf"
         cp -a "$pdffn" "$dest"
+        rm -v "authorities/$OFFICE/dbindex".{log,aux,out,pdf,toc} "authorities/$OFFICE/dblist.texpart"
         realpath "$dest" | xargs du -h
         ;;
     db/*/witness-*.pdf | db-private/*/witness-*.pdf)

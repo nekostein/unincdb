@@ -1,40 +1,65 @@
-\documentclass[10pt,a4paper]{article}
-\usepackage[textwidth=40em]{geometry}
-\usepackage{calc,fontspec,inconsolata-nerd-font,datetime2}
+\documentclass[11pt,a4paper]{extarticle}
+\usepackage[textwidth=38em]{geometry}
+\usepackage{calc,fontspec,datetime2}
 
 \setmainfont{TeX Gyre Termes}
 \setromanfont{TeX Gyre Termes}
-% \setmonofont{Inconsolata}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
+\setmonofont{Courier 10 Pitch}
 
-\title{Example Alternative Document}
-\author{UNINCDB Workgroup @ Nekostein HQ}
-\date{\today}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.2}
+\pagestyle{empty}
+
 
 \begin{document}
-\maketitle
+\ttfamily\raggedright
+
+Dear reader,
+
+\strut~~~
 
 This is an example alternative document.
+You should be able to build this document using the following command.
 
-You should be able to build this document using the following command:
-
-
+\strut~~~
 
 \input{.workdir/example.cmd.texpart}
 
-\vskip 2em\hrule\vskip 2em
-
-
-
+\strut~~~
 
 Then you can find the PDF here:
 
+\strut~~~
+
 \input{.workdir/example.pdfpath.texpart}
 
-\vskip 2em\hrule\vskip 2em
+\strut~~~
 
-
+\strut\hrulefill
 
 \input{.workdir/example.data.texpart}
+
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+\strut~~~\par
+
+Example Alternative Document
+
+By: UNINCDB Workgroup @ Nekostein HQ
 \end{document}
