@@ -11,20 +11,15 @@
 \usepackage[textwidth=40em,vmargin=24mm]{geometry}
 \usepackage{calc,fontspec,xcolor,graphicx,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK,hyperref}
 
-\input{.workdir/fulltomldata.texpart}
-\input{.workdir/tomldata2tex.texpart}
-
-% \setmainfont{Latin Modern Roman}
-% \setromanfont{Latin Modern Roman}
-\setmainfont{TeX Gyre Schola}
-\setromanfont{TeX Gyre Schola}
-\setsansfont{TeX Gyre Heros}
+\usepackage{schola-otf}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\linespread{1.09}
+\linespread{1.05}
 \frenchspacing
 
+\input{.workdir/fulltomldata.texpart}
+\input{.workdir/tomldata2tex.texpart}
 
 
 
@@ -44,7 +39,6 @@
 \newcommand{\stdorginfo}[0]{
     \parbox{\linewidth}{
         \tabcolsep=0pt
-        \small
         \begin{tabu}{lX}
             \toprule
             \mdseries Business Name~~~~~~ & \fulltomldataATfullname \\

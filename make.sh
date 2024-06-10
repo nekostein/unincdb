@@ -31,7 +31,7 @@ function getdblistcol() {
     cut -d';' -f"$1" "authorities/$OFFICE/witnesslist.txt"
 }
 
-function altdocsrsync() {
+function try_altdocsrsync() {
     [[ "$WWW_INCLUDE_ALTDOC" == y ]] && rsync -av _dist/altdocs/$OFFICE/ _dist/www/$OFFICE/
 }
 
@@ -147,7 +147,6 @@ case "$1" in
         ;;
     alt)
         ### Example: ./make alt example db/1970/unincdb-tutorial
-        ./make.sh gc workdir
         export docname="$2"
         if [[ -n "$3" ]]; then
             bash utils/makealtdocs.sh "$3"
@@ -156,7 +155,7 @@ case "$1" in
                 bash utils/makealtdocs.sh "$orgdir"
             done
         fi
-        altdocsrsync
+        try_altdocsrsync
         ;;
     altall)
         ./make.sh gc altdoc
