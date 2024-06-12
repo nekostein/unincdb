@@ -7,8 +7,8 @@
 % to express their intention of representing the unincorporated organization.
 
 
-\documentclass[11pt,a4paper,hidelinks]{article}
-\usepackage[textwidth=37em,vmargin=24mm]{geometry}
+\documentclass[12pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=35em,vmargin=20mm]{geometry}
 \usepackage{calc,fontspec,xcolor,graphicx,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK,hyperref}
 
 \usepackage{termes-otf}
@@ -40,7 +40,8 @@
     \scalebox{1}[1.13]{%
         \parbox{\textwidth}{%
             \begin{center}%
-                \large\rmfamily\mdseries\strut%
+                % \large
+                \rmfamily\mdseries\strut%
                 #1%
             \end{center}%
         }%
@@ -50,6 +51,7 @@
 \newcommand{\stdorginfo}[0]{
     \parbox{\linewidth}{
         \tabcolsep=0pt
+        \small
         \begin{tabu}{lX}
             \toprule
             \mdseries Business Name~~~~~~ & \fulltomldataATfullname \\
@@ -85,10 +87,10 @@
 Now you are seeing the PMisc document, a PDF built via \LaTeX.
 It is generated from ``UNINC.toml'' and ``pmisc.tex'' in the UNINCDB repository.
 
-In this document, we intend to afford a few pre-made forms
+In this document, we offer a few pre-made forms
 that an unincorporated organization can print and sign/stamp/seal en masse.
 For example, the Deed Poll for Assuming Presidential Duty can be instrumental
-when convincing a third party that any liability that may possibly emerge
+in convincing a third party that any organizational liability that may possibly emerge
 will at least be handled by the President in person.
 
 You might have noticed that using this tool does not necessarily require obtaining a Letter of Witness
@@ -206,18 +208,29 @@ Witness / Endorsement / Notary:
 
 
 \clearpage
-\newdochere{\fulltomldataATfullname\\\MakeUppercase{Certificate of Representative Status}}
+\newdochere{\fulltomldataATfullname\\\MakeUppercase{Certificate of Power of Attorney}}
 \thispagestyle{empty}
 
 \stdorginfo
 
 \strut This is to certify that the person
 
+\vskip 1em
 \underline{\strut\hspace{0.8\linewidth}}
+\vskip 1em
 
-is a representative of our organization.
+has the power of attorney to sign off paperwork,
+on behalf of our organization,
+within the following categories:
 
-Valid through (date: \underline{\hspace{20em}}).
+\vskip 1em
+\underline{\strut\hspace{0.8\linewidth}}
+\vskip 1em
+
+Valid through
+\vskip 1em
+
+(date: \underline{\hspace{15em}}).
 
 \hsepline
 
