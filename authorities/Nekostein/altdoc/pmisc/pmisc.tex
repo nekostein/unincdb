@@ -7,22 +7,33 @@
 % to express their intention of representing the unincorporated organization.
 
 
-\documentclass[10pt,a4paper,hidelinks]{article}
-\usepackage[textwidth=40em,vmargin=24mm]{geometry}
+\documentclass[11pt,a4paper,hidelinks]{article}
+\usepackage[textwidth=37em,vmargin=24mm]{geometry}
 \usepackage{calc,fontspec,xcolor,graphicx,microtype,paralist,enumitem,tabu,booktabs,datetime2,xeCJK,hyperref}
 
-\usepackage{schola-otf}
+\usepackage{termes-otf}
+% \usepackage{nimbussans}
+% \usepackage{XCharter}
+% \usepackage{lmodern}
+% \setromanfont{Lora}
+% \setmainfont{Lora}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
-\linespread{1.05}
+\linespread{1}
 \frenchspacing
 
 \input{.workdir/fulltomldata.texpart}
 \input{.workdir/tomldata2tex.texpart}
 
 
-
+\newcommand{\hsepline}[0]{
+    \nopagebreak\par\nopagebreak\vskip 0.5em%
+    \begin{center}%
+        \rmfamily\normalsize\mdseries%
+        *~~~~~~*~~~~~~*%
+    \end{center}
+}
 \newcommand{\newdochere}[1]{
     \setcounter{page}{1}
     \setcounter{section}{0}
@@ -93,6 +104,8 @@ this PDF should be available at the following URL.
     \href{\unincdbaltdocprefix.pmisc.pdf}{\unincdbaltdocprefix.pmisc.pdf}
 \end{center}
 
+\hsepline
+
 \vfill
 \begingroup\small
 Copyright \copyright~2024 Nekostein, an unincorporated game development team consisting of Neruthes and MIAO\_OAIM.
@@ -142,6 +155,8 @@ hereby make a solemn declaration of FOUR clauses:
 This is a computer-generated document that shall come into force
 if and only if its printed copy is signed off.
 
+\hsepline
+
 \vfill
 \stdsignaturearea{}
 
@@ -163,23 +178,24 @@ stamps/seals belong to this unincorporated organization.
 These stamps may be used to indicate approval in civil and commerce terms on behalf of our organization.
 All previous similar declarations are invalid since today.
 
-We assume a duty to publish a scanned copy of this document at the following web address
-as a measure to notify any party who may concern.
+We may publish a scanned copy of this document at the following web address.
+If we do, this printed statement must conform to the online copy to remain valid;
+it is a formal way of delivering invalidation announcements.
 
 \providecommand{\fulltomldataATcomDOTnekosteinDOTurlstamps}[0]{}
 \strut URL:~~\fulltomldataATcomDOTnekosteinDOTurlstamps
 
 \begin{tabu}{|X|X|X|}
     \hline
-    Stamp Sample 1 & Stamp Sample 2 & Stamp Sample 3\\ & &\vspace{32mm} \\
+    Stamp Sample 1 & Stamp Sample 2 & Stamp Sample 3\\ & &\vspace{30mm} \\
     \hline
-    Stamp Sample 4 & Stamp Sample 5 & Stamp Sample 6\\ & &\vspace{32mm} \\
+    Stamp Sample 4 & Stamp Sample 5 & Stamp Sample 6\\ & &\vspace{30mm} \\
     \hline
-    Stamp Sample 7 & Stamp Sample 8 & Stamp Sample 9\\ & &\vspace{32mm} \\
+    Stamp Sample 7 & Stamp Sample 8 & Stamp Sample 9\\ & &\vspace{30mm} \\
     \hline
 \end{tabu}
 
-\vfill
+% \vfill
 \stdsignaturearea{By President:}\par
 Witness / Endorsement / Notary:
 \vfill
@@ -202,6 +218,8 @@ Witness / Endorsement / Notary:
 is a representative of our organization.
 
 Valid through (date: \underline{\hspace{20em}}).
+
+\hsepline
 
 \vfill
 \stdsignaturearea{By President:}
