@@ -177,6 +177,6 @@ case "$1" in
         echo "[INFO] Non-path targets:  all allmd alt altall dbindex gc hash"
         ;;
     *)
-        [[ -e "$1"/UNINC.toml ]] && ./make.sh "$1"/UNINC.toml
+        [[ -e "$1"/UNINC.toml ]] && ./make.sh "$(realpath "$1"/UNINC.toml --relative-to "$PWD")"
         ;;
 esac

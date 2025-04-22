@@ -1,0 +1,15 @@
+fullname = "COSMIC COACHMAN UNINC"
+type = "Quasi-LLC"
+date_creation = "2025-04-22"
+status = "Active"
+fields = "Retail; Art; Culture"
+president = "NERUTHES"
+secretary = "NERUTHES"
+charter_hash = "b0848c67768bd766d2aa77c7f3c3d861561b892c"
+addresses = [
+    "https://cosmiccoachman.com",
+]
+witness = [
+    "https://unincdb.nekostein.com/id/100-0000-0004.pdf"
+]
+
