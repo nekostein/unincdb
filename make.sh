@@ -180,3 +180,4 @@ case "$1" in
         [[ -e "$1"/UNINC.toml ]] && ./make.sh "$(realpath "$1"/UNINC.toml --relative-to "$PWD")"
         ;;
 esac
+
