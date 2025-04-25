@@ -5,7 +5,7 @@ status = "Active"
 fields = "Retail; Art; Culture"
 president = "NERUTHES"
 secretary = "NERUTHES"
-charter_hash = "b0848c67768bd766d2aa77c7f3c3d861561b892c"
+charter_hash = "4d19725ffb043eb13418c611165fcd907b3c58af"
 addresses = [
     "https://cosmiccoachman.com",
 ]
