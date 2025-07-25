@@ -66,6 +66,7 @@ case "$1" in
         destfn_pref="$(bash utils/helper-transformpdfpath.sh "$pdf_src" | sed 's|.pdf$||')"
         sha1sum "$1" | cut -d' ' -f1 > "$1.hash"
         pandoc -i "$1" -f markdown+smart -t latex -o "$1.texpart"
+        sed -i 's|\\,||g' "$1.texpart"
         # dirname_dest="_dist/www/$OFFICE/$(cut -d/ -f2 <<< "$1")"
         dirname_dest="$(dirname "$destfn_pref.Charter.md")"
         mkdir -p "$dirname_dest"

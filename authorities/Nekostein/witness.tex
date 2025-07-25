@@ -3,13 +3,14 @@
 
 
 \input{_dist/libvi/latex/ns-letter.tex}
-\usepackage{microtype,hyphenat}
-\newgeometry{textwidth=33em,rmargin=25mm,tmargin=90mm,bmargin=37mm}
+\usepackage{hyphenat,fontspec}
+% \newgeometry{textwidth=33em,rmargin=25mm,tmargin=90mm,bmargin=37mm}
+\geometry{textwidth=33em,rmargin=25mm,tmargin=55mm,bmargin=37mm}
 \sloppy
 
 
 \setlength{\sendtoareaextraraise}{58.5pt}
-\emergencystretch=15em % Allow extra stretching in case of overfull lines
+% \emergencystretch=15em % Allow extra stretching in case of overfull lines
 
 
 
@@ -52,7 +53,7 @@
         \Large\bfseries\sffamily%
         #1%
         \par\hsepline%
-    }
+    }\leavevmode\vskip 30mm
 }
 \newcommand{\cachedunincname}[0]{}
 \newcommand{\manifestfieldbig}[2]{
@@ -107,7 +108,7 @@ with a Charter identifiable with the given hash.
 % Organization Charter
 \fakenewdoc
 \minititle{\strut ATTACHMENT 1\\\strut ORGANIZATION CHARTER}\small
-
+\addfontfeatures{Ligatures=TeX}
 
 \input{.workdir/Charter.md.texpart}\hsepline
 \clearpage

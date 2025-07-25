@@ -1,5 +1,5 @@
 <!--
-    gpg --output - --sign -ab db/2024/pentapen-media-uninc/Charter.md | pbcopy
+    gpg --pinentry-mode loopback --output - --sign -ab db/1970/pentapen-media-uninc/Charter.md | pbcopy
 -->
 
 # Signature from Neruthes
